@@ -11,5 +11,5 @@ vendor/bin/phpcbf --standard=Symfony src/ --ignore=Kernel.php
 
 Bazy danych:
 
-doctrine:migrations:migrate
-doctrine:fixtures:load
+bin/console doctrine:migrations:migrate
+bin/console doctrine:fixtures:load

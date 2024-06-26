@@ -50,6 +50,10 @@
         <source>action.view</source>
         <target>Go to the post</target>
       </trans-unit>
+      <trans-unit id="action.show">
+        <source>action.show</source>
+        <target>Go to the post</target>
+      </trans-unit>
       <trans-unit id="title.task_list">
         <source>title.task_list</source>
         <target>Posts</target>
@@ -61,6 +65,10 @@
       <trans-unit id="action.back_to_list">
         <source>action.back_to_list</source>
         <target>Back to list</target>
+      </trans-unit>
+      <trans-unit id="label.category">
+        <source>label.category</source>
+        <target>Category</target>
       </trans-unit>
     </body>
   </file>
