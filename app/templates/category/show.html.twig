@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.task_list'|trans }}
+    {{ 'category.category_elements'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.task_list'|trans }}</h1>
+    <h1>{{ category.title }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -25,22 +25,24 @@
             </thead>
             <tbody>
             {% for task in pagination.items %}
-                <tr>
-                    <td>{{ task.id }}</td>
-                    <td>{{ task.createdAt|format_date('long') }}</td>
-                    <td>{{ task.updatedAt|format_date('long') }}</td>
-                    <td>{{ task.title }}</td>
-                    <td>
-                        <a href="{{ url('category_show', {id: task.category.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ task.category.title }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'action.show'|trans }}
-                        </a>
-                    </td>
-                </tr>
+                {% if task.category.id == category.id %}
+                    <tr>
+                        <td>{{ task.id }}</td>
+                        <td>{{ task.createdAt|format_date('long') }}</td>
+                        <td>{{ task.updatedAt|format_date('long') }}</td>
+                        <td>{{ task.title }}</td>
+                        <td>
+                            <a href="{{ url('category_show', {id: task.category.id}) }}" title="{{ 'action.show'|trans }}">
+                                {{ task.category.title }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}">
+                                {{ 'action.show'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>

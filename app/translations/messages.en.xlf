@@ -70,6 +70,10 @@
         <source>label.category</source>
         <target>Category</target>
       </trans-unit>
+      <trans-unit id="category.category_elements">
+        <source>category.category_elements</source>
+        <target>Elements in category</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
