@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Task service.
+ * Category service.
  */
 
 namespace App\Service;
 
-use App\Repository\TaskRepository;
+use App\Repository\CategoryRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * Class TaskService.
  */
-class TaskService implements TaskServiceInterface
+class CategoryService implements CategoryServiceInterface
 {
     /**
      * Items per page.
@@ -29,10 +29,9 @@ class TaskService implements TaskServiceInterface
     /**
      * Constructor.
      *
-     * @param TaskRepository     $taskRepository Task repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param PaginatorInterface $paginator Paginator
      */
-    public function __construct(private readonly TaskRepository $taskRepository, private readonly PaginatorInterface $paginator)
+    public function __construct(private readonly CategoryRepository $categoryRepository, private readonly PaginatorInterface $paginator)
     {
     }
 
@@ -46,16 +45,7 @@ class TaskService implements TaskServiceInterface
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->taskRepository->queryAll(),
-            $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
-        );
-    }
-
-    public function getKeyedPaginatedList(int $page, int $key): PaginationInterface
-    {
-        return $this->paginator->paginate(
-            $this->taskRepository->queryPart($key),
+            $this->categoryRepository->queryAll(),
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE
         );

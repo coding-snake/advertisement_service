@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'category.category_elements'|trans }}
+    {{ 'title.task_list'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -26,22 +26,22 @@
             <tbody>
             {% for task in pagination.items %}
                 {% if task.category.id == category.id %}
-                    <tr>
-                        <td>{{ task.id }}</td>
-                        <td>{{ task.createdAt|format_date('long') }}</td>
-                        <td>{{ task.updatedAt|format_date('long') }}</td>
-                        <td>{{ task.title }}</td>
-                        <td>
-                            <a href="{{ url('category_show', {id: task.category.id}) }}" title="{{ 'action.show'|trans }}">
-                                {{ task.category.title }}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}">
-                                {{ 'action.show'|trans }}
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.createdAt|format_date('long') }}</td>
+                    <td>{{ task.updatedAt|format_date('long') }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>
+                        <a href="{{ url('category_show', {id: task.category.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ task.category.title }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'action.show'|trans }}
+                        </a>
+                    </td>
+                </tr>
                 {% endif %}
             {% endfor %}
             </tbody>
