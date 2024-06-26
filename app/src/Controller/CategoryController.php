@@ -7,8 +7,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Repository\TaskRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\TaskServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
@@ -21,12 +20,11 @@ use Symfony\Component\Routing\Attribute\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * Show action.
-     *
-     * @param Category $category Category entity
-     *
-     * @return Response HTTP response
+     * Constructor.
      */
+    public function __construct(private readonly TaskServiceInterface $taskService)
+    {
+    }
 
     #[Route(
         '/{id}',
@@ -34,13 +32,9 @@ class CategoryController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET',
     )]
-    public function show(Category $category, TaskRepository $taskRepository, PaginatorInterface $paginator, #[MapQueryParameter] int $page = 1): Response
+    public function index(Category $category, #[MapQueryParameter] int $page = 1): Response
     {
-        $pagination = $paginator->paginate(
-            $taskRepository->queryAll(),
-            $page,
-            TaskRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        $pagination = $this->taskService->getPaginatedList($page);
 
         return $this->render('category/show.html.twig', ['pagination' => $pagination, 'category' => $category]);
     }
