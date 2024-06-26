@@ -58,6 +58,12 @@ class Task
     private ?Category $category = null;
 
     /**
+     * Content.
+     */
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $Content = null;
+
+    /**
      * Getter for Id.
      *
      * @return int|null Id
@@ -135,6 +141,28 @@ class Task
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Getter for content.
+     *
+     * @return string|null Title
+     */
+    public function getContent(): ?string
+    {
+        return $this->Content;
+    }
+
+    /**
+     * Setter for content.
+     *
+     * @param string|null $title content
+     */
+    public function setContent(string $Content): static
+    {
+        $this->Content = $Content;
 
         return $this;
     }
