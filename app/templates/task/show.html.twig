@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.task_details'|trans({'%id%': task.id|default('')}) }}
+    {{ 'title.task_details'|trans({'%id%': task.id|default('')}) }} {{ ' (R)' }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.task_details'|trans({'%id%': task.id|default('')}) }}</h1>
+    <h1>{{ 'title.task_details'|trans({'%id%': task.id|default('')}) }} {{ ' (R)' }}</h1>
     {% if task is defined and task|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'label.id'|trans }}</dt>
@@ -21,6 +21,15 @@
             <dt>{{ 'label.content'|trans }}</dt>
             <dd>{{  task.content }}</dd>
         </dl>
+        <table>
+            <tr>
+                <th>{{ 'action.update'|trans }}</th>
+            </tr>
+            <tr>
+                <th>{{ 'action.delete'|trans }}</th>
+            </tr>
+        </table>
+        <br><br>
         <p>
             <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}

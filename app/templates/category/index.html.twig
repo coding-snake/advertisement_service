@@ -6,6 +6,11 @@
 
 {% block body %}
     <h1>{{ 'title.task_list'|trans }}</h1>
+
+    <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
+        {{ 'action.create'|trans }}
+    </a>
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">

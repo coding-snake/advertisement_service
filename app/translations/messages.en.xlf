@@ -2,30 +2,81 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
-      <trans-unit id="label.actions">
-        <source>label.actions</source>
-        <target>Actions</target>
+    <!-- OGLOSZENIA INDEX -->
+      <trans-unit id="title.task_list">
+        <source>title.task_list</source>
+        <target>lista postów od najnowszego do najstarszego (na podstawie ostatniej edycji) z paginacją po 10 rekordów na stronie</target>
+      </trans-unit>
+      <trans-unit id="action.create">
+        <source>action.create</source>
+        <target>Stwórz (C)</target>
       </trans-unit>
       <trans-unit id="label.id">
         <source>label.id</source>
-        <target>Id</target>
+        <target>ID</target>
+      </trans-unit>
+        <trans-unit id="label.created_at">
+        <source>label.created_at</source>
+        <target>Data utworzenia</target>
+      </trans-unit>
+      <trans-unit id="label.updated_at">
+        <source>label.updated_at</source>
+        <target>Data ostatniej edycji</target>
       </trans-unit>
       <trans-unit id="label.title">
         <source>label.title</source>
-        <target>Title</target>
+        <target>Tytuł</target>
+      </trans-unit>
+      <trans-unit id="label.category">
+        <source>label.category</source>
+        <target>Kategoria</target>
+      </trans-unit>
+      <trans-unit id="label.actions">
+        <source>label.actions</source>
+        <target>Akcje</target>
+      </trans-unit>
+      <trans-unit id="action.show">
+        <source>action.show</source>
+        <target>Przeczytaj (R)</target>
+      </trans-unit>
+
+      <trans-unit id="message.empty_list">
+        <source>message.empty_list</source>
+        <target>Lista jest pusta</target>
+      </trans-unit>
+      <!-- OGLOSZENIA SHOW -->
+      <trans-unit id="title.task_details">
+        <source>title.task_details</source>
+        <target>Post</target>
       </trans-unit>
       <trans-unit id="label.content">
         <source>label.content</source>
-        <target>Content</target>
+        <target>Treść</target>
       </trans-unit>
+      <trans-unit id="action.back_to_list">
+        <source>action.back_to_list</source>
+        <target>Powrót do listy</target>
+      </trans-unit>
+
+
+      <trans-unit id="action.update">
+        <source>action.update</source>
+        <target>Edytuj (U)</target>
+      </trans-unit>
+      <trans-unit id="action.delete">
+        <source>action.delete</source>
+        <target>Usuń (D)</target>
+      </trans-unit>
+      <!-- GOOD -->
+
+
+
+
       <trans-unit id="label.tags">
         <source>label.tags</source>
         <target>Tags</target>
       </trans-unit>
-      <trans-unit id="message.empty_list">
-        <source>message.empty_list</source>
-        <target>List is empty.</target>
-      </trans-unit>
+
       <trans-unit id="message.record_not_found">
         <source>message.record_not_found</source>
         <target>Record not found.</target>
@@ -38,38 +89,14 @@
         <source>title.record_view</source>
         <target>Record view #%id%</target>
       </trans-unit>
-      <trans-unit id="label.created_at">
-        <source>label.created_at</source>
-        <target>Date of creation</target>
-      </trans-unit>
-      <trans-unit id="label.updated_at">
-        <source>label.updated_at</source>
-        <target>Date of last update</target>
-      </trans-unit>
       <trans-unit id="action.view">
         <source>action.view</source>
         <target>Go to the post</target>
       </trans-unit>
-      <trans-unit id="action.show">
-        <source>action.show</source>
-        <target>Go to the post</target>
-      </trans-unit>
-      <trans-unit id="title.task_list">
-        <source>title.task_list</source>
-        <target>Posts</target>
-      </trans-unit>
-      <trans-unit id="title.task_details">
-        <source>title.task_details</source>
-        <target>Post details</target>
-      </trans-unit>
-      <trans-unit id="action.back_to_list">
-        <source>action.back_to_list</source>
-        <target>Back to list</target>
-      </trans-unit>
-      <trans-unit id="label.category">
-        <source>label.category</source>
-        <target>Category</target>
-      </trans-unit>
+
+
+
+
       <trans-unit id="category.category_elements">
         <source>category.category_elements</source>
         <target>Elements in category</target>
