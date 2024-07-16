@@ -6,7 +6,6 @@
 
 namespace App\Service;
 
-use App\Entity\Task;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**

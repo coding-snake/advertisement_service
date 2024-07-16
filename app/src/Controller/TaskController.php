@@ -6,6 +6,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Task;
 use App\Service\TaskServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,5 +58,25 @@ class TaskController extends AbstractController
     public function show(Task $task): Response
     {
         return $this->render('task/show.html.twig', ['task' => $task]);
+    }
+
+    /**
+     * Show action.
+     *
+     * @param Category $category Category
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/category/{id}',
+        name: 'category_show',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
+    )]
+    public function showCategory(Category $category, #[MapQueryParameter] int $page = 1): Response
+    {
+        $pagination = $this->taskService->getPaginatedListPart($page, $category);
+
+        return $this->render('task/show_category.html.twig', ['category' => $category, 'pagination' => $pagination]);
     }
 }

@@ -6,6 +6,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -44,6 +45,19 @@ class TaskRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->orderBy('task.updatedAt', 'DESC');
+    }
+
+    /**
+     * Query Part records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryPart(Category $category): QueryBuilder
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.category = :category')
+            ->setParameter('category', $category)
+            ->orderBy('t.updatedAt', 'DESC');
     }
 
     /**

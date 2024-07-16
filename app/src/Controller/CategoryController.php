@@ -8,7 +8,6 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Service\CategoryServiceInterface;
-use App\Service\TaskServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
@@ -23,9 +22,9 @@ class CategoryController extends AbstractController
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $categoryService Task service
+     * @param CategoryServiceInterface $categoryService Category service
      */
-    public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly TaskServiceInterface $taskService)
+    public function __construct(private readonly CategoryServiceInterface $categoryService)
     {
     }
 
@@ -40,25 +39,5 @@ class CategoryController extends AbstractController
         $pagination = $this->categoryService->getPaginatedList($page);
 
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
-    }
-
-    /**
-     * Show action.
-     *
-     * @param Category $category Category
-     *
-     * @return Response HTTP response
-     */
-    #[Route(
-        '/{id}',
-        name: 'category_show',
-        requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET'
-    )]
-    public function show(Category $category, #[MapQueryParameter] int $page = 1): Response
-    {
-        $pagination = $this->taskService->getPaginatedList($page);
-
-        return $this->render('category/show.html.twig', ['category' => $category, 'pagination' => $pagination]);
     }
 }

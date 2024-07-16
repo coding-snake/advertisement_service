@@ -6,6 +6,7 @@
 
 namespace App\Service;
 
+use App\Entity\Category;
 use App\Repository\TaskRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -52,10 +53,17 @@ class TaskService implements TaskServiceInterface
         );
     }
 
-    public function getKeyedPaginatedList(int $page, int $key): PaginationInterface
+    /**
+     * Get part of paginated list.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListPart(int $page, Category $category): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->taskRepository->queryPart($key),
+            $this->taskRepository->queryPart($category),
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE
         );
