@@ -7,6 +7,11 @@
 {% block body %}
     <h1>{{ 'title.categories.title'|trans }}</h1>
 
+    <h2>
+        <a href="{{ url('category_create')}}" title="{{ 'action.create'|trans }}">
+            {{ 'action.create'|trans }}
+        </a>
+    </h2>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">

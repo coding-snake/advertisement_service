@@ -81,6 +81,16 @@
         <target>wyświetlanie listy ogłoszeń dla danej kategorii : </target>
       </trans-unit>
 
+      <!-- CREATE CATEGORY -->
+      <trans-unit id="title.category_create">
+        <source>title.category_create</source>
+        <target>Utwórz kategorię</target>
+      </trans-unit>
+
+      <trans-unit id="action.save">
+        <source>action.save</source>
+        <target>Zapisz</target>
+      </trans-unit>
       <!-- GOOD -->
 
 
