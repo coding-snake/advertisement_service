@@ -91,6 +91,12 @@
         <source>action.save</source>
         <target>Zapisz</target>
       </trans-unit>
+
+      <!-- CREATE TASK -->
+      <trans-unit id="title.task_create">
+        <source>title.task_create</source>
+        <target>Utwórz post</target>
+      </trans-unit>
       <!-- GOOD -->
 
 

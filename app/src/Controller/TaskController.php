@@ -8,11 +8,14 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Task;
+use App\Form\Type\TaskType;
 use App\Service\TaskServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class TaskController.
@@ -23,7 +26,7 @@ class TaskController extends AbstractController
     /**
      * Constructor.
      */
-    public function __construct(private readonly TaskServiceInterface $taskService)
+    public function __construct(private readonly TaskServiceInterface $taskService, private readonly TranslatorInterface $translator)
     {
     }
 
@@ -78,5 +81,40 @@ class TaskController extends AbstractController
         $pagination = $this->taskService->getPaginatedListPart($page, $category);
 
         return $this->render('task/show_category.html.twig', ['category' => $category, 'pagination' => $pagination]);
+    }
+
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/create',
+        name: 'task_create',
+        methods: 'GET|POST',
+    )]
+    public function create(Request $request): Response
+    {
+        $task = new Task();
+        $form = $this->createForm(TaskType::class, $task);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->taskService->save($task);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.created_successfully')
+            );
+
+            return $this->redirectToRoute('task_index');
+        }
+
+        return $this->render(
+            'task/create.html.twig',
+            ['Form' => $form->createView()]
+        );
     }
 }

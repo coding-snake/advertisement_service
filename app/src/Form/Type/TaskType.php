@@ -1,21 +1,24 @@
 <?php
 
 /**
- * Category type.
+ * Task type.
  */
 
 namespace App\Form\Type;
 
 use App\Entity\Category;
+use App\Entity\Task;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class CategoryType.
+ * Class TaskType.
  */
-class CategoryType extends AbstractType
+class TaskType extends AbstractType
 {
     /**
      * Builds the Form.
@@ -35,6 +38,18 @@ class CategoryType extends AbstractType
             'required' => true,
             'attr' => ['max_length' => 255],
         ]);
+        $builder->add('content', TextareaType::class, [
+            'label' => 'label.content',
+            'required' => true,
+            'attr' => ['max_length' => 255],
+        ]);
+
+        $builder->add('category', EntityType::class, [
+            'class' => Category::class,
+            'choice_label' => 'title',
+            'label' => 'label.category',
+            'required' => true,
+        ]);
     }
 
     /**
@@ -44,7 +59,7 @@ class CategoryType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Category::class]);
+        $resolver->setDefaults(['data_class' => Task::class]);
     }
 
     /**
@@ -57,6 +72,6 @@ class CategoryType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'category';
+        return 'task';
     }
 }

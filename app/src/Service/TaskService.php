@@ -7,7 +7,10 @@
 namespace App\Service;
 
 use App\Entity\Category;
+use App\Entity\Task;
 use App\Repository\TaskRepository;
+use Doctrine\ORM\Exception\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -67,5 +70,24 @@ class TaskService implements TaskServiceInterface
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Task category entity
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(Task $task): void
+    {
+        $task->setCreatedAt(new \DateTimeImmutable());
+        if (null === $task->getId()) {
+            $currentTime = new \DateTimeImmutable();
+            $task->setUpdatedAt($currentTime);
+            $task->setCreatedAt($currentTime);
+        }
+        $this->taskRepository->save($task);
     }
 }

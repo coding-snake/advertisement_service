@@ -61,6 +61,18 @@ class TaskRepository extends ServiceEntityRepository
     }
 
     /**
+     * Save entity.
+     *
+     * @param Task $task task entity
+     */
+    public function save(Task $task): void
+    {
+        assert($this->_em instanceof EntityManager);
+        $this->_em->persist($task);
+        $this->_em->flush();
+    }
+
+    /**
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder

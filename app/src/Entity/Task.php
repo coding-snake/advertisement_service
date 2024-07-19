@@ -50,8 +50,6 @@ class Task
 
     /**
      * Category.
-     *
-     * @var Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -157,8 +155,6 @@ class Task
 
     /**
      * Setter for content.
-     *
-     * @param string|null $title content
      */
     public function setContent(string $Content): static
     {
