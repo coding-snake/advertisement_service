@@ -97,6 +97,33 @@
         <source>title.task_create</source>
         <target>Utwórz post</target>
       </trans-unit>
+
+      <!-- EDIT CATEGORY -->
+      <trans-unit id="action.edit">
+        <source>action.edit</source>
+        <target>Edytuj (U) </target>
+      </trans-unit>
+
+      <trans-unit id="title.category_edit">
+        <source>title.category_edit</source>
+        <target>Edytuj kategorię </target>
+      </trans-unit>
+
+      <trans-unit id="message.created_successfully">
+        <source>message.created_successfully</source>
+        <target>SUKCES </target>
+      </trans-unit>
+
+      <!-- EDIT TASK -->
+      <trans-unit id="title.task_edit">
+        <source>ttle.task_edit</source>
+        <target>Edytuj post</target>
+      </trans-unit>
+
+      <trans-unit id="title.task_edit">
+        <source>title.task_edit</source>
+        <target>Edytuj post</target>
+      </trans-unit>
       <!-- GOOD -->
 
 

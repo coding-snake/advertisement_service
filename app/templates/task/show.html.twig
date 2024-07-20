@@ -23,7 +23,11 @@
         </dl>
         <table>
             <tr>
-                <th>{{ 'action.update'|trans }}</th>
+                <th>
+                    <a href="{{ url('task_edit', {id: task.id})  }}" title="{{ 'action.update'|trans }}">
+                        {{ 'action.update'|trans }}
+                    </a>
+                </th>
             </tr>
             <tr>
                 <th>{{ 'action.delete'|trans }}</th>

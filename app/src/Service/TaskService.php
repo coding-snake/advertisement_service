@@ -82,12 +82,11 @@ class TaskService implements TaskServiceInterface
      */
     public function save(Task $task): void
     {
-        $task->setCreatedAt(new \DateTimeImmutable());
+        $currentTime = new \DateTimeImmutable();
         if (null === $task->getId()) {
-            $currentTime = new \DateTimeImmutable();
-            $task->setUpdatedAt($currentTime);
             $task->setCreatedAt($currentTime);
         }
+        $task->setUpdatedAt($currentTime);
         $this->taskRepository->save($task);
     }
 }
