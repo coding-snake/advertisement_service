@@ -89,4 +89,17 @@ class TaskService implements TaskServiceInterface
         $task->setUpdatedAt($currentTime);
         $this->taskRepository->save($task);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Task $task Task entity
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete(Task $task): void
+    {
+        $this->taskRepository->delete($task);
+    }
 }

@@ -9,6 +9,8 @@ namespace App\Repository;
 use App\Entity\Category;
 use App\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Exception\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -69,6 +71,21 @@ class TaskRepository extends ServiceEntityRepository
     {
         assert($this->_em instanceof EntityManager);
         $this->_em->persist($task);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Task $task Task entity
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete(Task $task): void
+    {
+        assert($this->_em instanceof EntityManager);
+        $this->_em->remove($task);
         $this->_em->flush();
     }
 

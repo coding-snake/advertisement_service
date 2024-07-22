@@ -70,8 +70,8 @@
       </trans-unit>
 
       <!-- CATEGORY INDEX -->
-      <trans-unit id="title.categories.title">
-        <source>title.categories.title</source>
+      <trans-unit id="title.categories_title">
+        <source>title.categories_title</source>
         <target>Lista kategorii</target>
       </trans-unit>
       <!-- CATEGORY SHOW -->
@@ -111,19 +111,31 @@
 
       <trans-unit id="message.created_successfully">
         <source>message.created_successfully</source>
-        <target>SUKCES </target>
+        <target>SUKCES W TWORZENIU</target>
+      </trans-unit>
+
+      <trans-unit id="message.deleted_successfully">
+        <source>message.deleted_successfully</source>
+        <target>SUKCES W USUNIĘCIU</target>
       </trans-unit>
 
       <!-- EDIT TASK -->
       <trans-unit id="title.task_edit">
-        <source>ttle.task_edit</source>
-        <target>Edytuj post</target>
-      </trans-unit>
-
-      <trans-unit id="title.task_edit">
         <source>title.task_edit</source>
         <target>Edytuj post</target>
       </trans-unit>
+
+      <trans-unit id="title.category_delete">
+        <source>title.category_delete</source>
+        <target>Usuń kategorię</target>
+      </trans-unit>
+
+      <trans-unit id="title.task_delete">
+        <source>title.task_delete</source>
+        <target>Usuń post</target>
+      </trans-unit>
+
+
       <!-- GOOD -->
 
 

@@ -71,4 +71,17 @@ class CategoryService implements CategoryServiceInterface
         $category->setUpdatedAt($currentTime);
         $this->categoryRepository->save($category);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Category $category Category entity
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete(Category $category): void
+    {
+        $this->categoryRepository->delete($category);
+    }
 }

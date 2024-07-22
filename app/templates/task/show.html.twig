@@ -30,7 +30,11 @@
                 </th>
             </tr>
             <tr>
-                <th>{{ 'action.delete'|trans }}</th>
+                <th>
+                    <a href="{{ url('task_delete', {id: task.id})  }}" title="{{ 'action.delete'|trans }}">
+                        {{ 'action.delete'|trans }}
+                    </a>
+                </th>
             </tr>
         </table>
         <br><br>

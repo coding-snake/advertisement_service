@@ -11,6 +11,7 @@ use App\Entity\Task;
 use App\Form\Type\TaskType;
 use App\Service\TaskServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
@@ -122,7 +123,7 @@ class TaskController extends AbstractController
      * Edit action.
      *
      * @param Request  $request  HTTP request
-     * @param Category $category Category entity
+     * @param Task $task Task entity
      *
      * @return Response HTTP response
      */
@@ -155,6 +156,43 @@ class TaskController extends AbstractController
             [
                 'form' => $form->createView(),
                 'task' => $task,
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Task $task Task entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/delete', name: 'task_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    public function delete(Request $request, Task $task): Response
+    {
+        $form = $this->createForm(FormType::class, $task, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('task_delete', ['id' => $task->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->taskService->delete($task);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.deleted_successfully')
+            );
+
+            return $this->redirectToRoute('task_index');
+        }
+
+        return $this->render(
+            'task/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'category' => $task,
             ]
         );
     }
