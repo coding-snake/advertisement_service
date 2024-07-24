@@ -140,10 +140,16 @@
         <target>LISTA POSTÓW</target>
       </trans-unit>
 
+      <trans-unit id="message.form_error">
+        <source>message.form_error</source>
+        <target>BŁĄD</target>
+      </trans-unit>
+
       <trans-unit id="title.categories">
         <source>title.categories</source>
         <target>LISTA KATEGORII</target>
       </trans-unit>
+
       <!-- GOOD -->
 
 
