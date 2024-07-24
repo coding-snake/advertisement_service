@@ -150,6 +150,13 @@
         <target>LISTA KATEGORII</target>
       </trans-unit>
 
+
+
+      <trans-unit id="message.category_contains_tasks">
+        <source>message.category_contains_tasks</source>
+        <target>TA KATEGORIA NIE JEST PUSTA</target>
+      </trans-unit>
+
       <!-- GOOD -->
 
 

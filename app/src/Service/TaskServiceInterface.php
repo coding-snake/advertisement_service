@@ -6,6 +6,7 @@
 
 namespace App\Service;
 
+use App\Entity\Category;
 use App\Entity\Task;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
@@ -36,4 +37,5 @@ interface TaskServiceInterface
      * @param Task $task Task entity
      */
     public function delete(Task $task): void;
+
 }
