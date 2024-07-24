@@ -50,7 +50,13 @@ class TaskRepository extends ServiceEntityRepository
     }
 
     /**
+     * Code from the section about partial querying doesn't seem to work for me so I am using
+     * magic code from the internet.
+     */
+    /**
      * Query Part records.
+     *
+     * @param Category $category Category
      *
      * @return QueryBuilder Query builder
      */

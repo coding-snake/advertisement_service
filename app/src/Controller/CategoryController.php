@@ -26,7 +26,8 @@ class CategoryController extends AbstractController
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $categoryService Category service
+     * @param CategoryServiceInterface $categoryService category service
+     * @param TranslatorInterface      $translator      translator service
      */
     public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly TranslatorInterface $translator)
     {
@@ -34,6 +35,8 @@ class CategoryController extends AbstractController
 
     /**
      * Index action.
+     *
+     * @param int $page starting page number
      *
      * @return Response HTTP response
      */

@@ -59,7 +59,8 @@ class TaskService implements TaskServiceInterface
     /**
      * Get part of paginated list.
      *
-     * @param int $page Page number
+     * @param int      $page     Page number
+     * @param Category $category Category
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -75,7 +76,7 @@ class TaskService implements TaskServiceInterface
     /**
      * Save entity.
      *
-     * @param Task category entity
+     * @param Task $task task entity
      *
      * @throws ORMException
      * @throws OptimisticLockException

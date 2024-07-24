@@ -26,6 +26,9 @@ class TaskController extends AbstractController
 {
     /**
      * Constructor.
+     *
+     * @param TaskServiceInterface $taskService task service
+     * @param TranslatorInterface  $translator  translator service
      */
     public function __construct(private readonly TaskServiceInterface $taskService, private readonly TranslatorInterface $translator)
     {
@@ -34,7 +37,7 @@ class TaskController extends AbstractController
     /**
      * Index action.
      *
-     * @param int $page Page number
+     * @param int $page starting page number
      *
      * @return Response HTTP response
      */
@@ -68,6 +71,7 @@ class TaskController extends AbstractController
      * Show action.
      *
      * @param Category $category Category
+     * @param int      $page     starting page number
      *
      * @return Response HTTP response
      */
@@ -122,8 +126,8 @@ class TaskController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Task $task Task entity
+     * @param Request $request HTTP request
+     * @param Task    $task    Task entity
      *
      * @return Response HTTP response
      */
@@ -163,8 +167,8 @@ class TaskController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Task $task Task entity
+     * @param Request $request HTTP request
+     * @param Task    $task    Task entity
      *
      * @return Response HTTP response
      */

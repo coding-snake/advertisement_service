@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block body %}
+    <a href="{{ url('task_index') }}" class="btn btn-link"> {{ 'title.tasks'|trans }}</a>
+    <a href="{{ url('category_index') }}" class="btn btn-link"> {{ 'title.categories'|trans }}</a>
+
     <h1>{{ 'title.task_list'|trans }}</h1>
 
     <h2>

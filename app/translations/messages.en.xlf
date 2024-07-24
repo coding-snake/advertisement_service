@@ -135,7 +135,15 @@
         <target>Usuń post</target>
       </trans-unit>
 
+      <trans-unit id="title.tasks">
+        <source>title.tasks</source>
+        <target>LISTA POSTÓW</target>
+      </trans-unit>
 
+      <trans-unit id="title.categories">
+        <source>title.categories</source>
+        <target>LISTA KATEGORII</target>
+      </trans-unit>
       <!-- GOOD -->
 
 

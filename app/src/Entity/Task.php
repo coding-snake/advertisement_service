@@ -59,7 +59,7 @@ class Task
      * Content.
      */
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $Content = null;
+    private ?string $content = null;
 
     /**
      * Getter for Id.
@@ -131,11 +131,23 @@ class Task
         $this->title = $title;
     }
 
+    /**
+     * Get the category.
+     *
+     * @return Category|null The category entity or null if not set
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Set the category.
+     *
+     * @param Category|null $category The category entity to set
+     *
+     * @return $this The current instance
+     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
@@ -150,15 +162,19 @@ class Task
      */
     public function getContent(): ?string
     {
-        return $this->Content;
+        return $this->content;
     }
 
     /**
      * Setter for content.
+     *
+     * @param string $content The content of the entity
+     *
+     * @return $this The current instance
      */
-    public function setContent(string $Content): static
+    public function setContent(string $content): static
     {
-        $this->Content = $Content;
+        $this->content = $content;
 
         return $this;
     }
