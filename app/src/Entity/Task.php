@@ -65,6 +65,13 @@ class Task
     private ?Category $category = null;
 
     /**
+     * Tag.
+
+    #[ORM\ManyToOne(targetEntity: Tag::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Tag $tag = null;
+
+    /**
      * Content.
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -73,8 +80,11 @@ class Task
     #[Assert\Length(min: 3, max: 255)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $author = null;
+
+    #[ORM\ManyToOne(targetEntity: Tag::class)]
+    private ?Tag $tag = null;
 
     /**
      * Getter for Id.
@@ -170,6 +180,7 @@ class Task
         return $this;
     }
 
+
     /**
      * Getter for content.
      *
@@ -202,6 +213,30 @@ class Task
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get the tag.
+     *
+     * @return Tag|null The tag entity or null if not set
+    */
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    /**
+     * Set the tag.
+     *
+     * @param Tag|null $tag The tag entity to set
+     *
+     * @return $this The current instance
+    */
+    public function setTag(?Tag $tag): static
+    {
+        $this->tag = $tag;
 
         return $this;
     }

@@ -196,7 +196,7 @@ class TaskController extends AbstractController
             'task/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'category' => $task,
+                'task' => $task,
             ]
         );
     }

@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.task_edit'|trans({'%id%': task.id|default('')}) }}
+    {{ 'title.tag_edit'|trans({'%id%': tag.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
     {% include 'default/_form.html.twig' with {
-        page_title: 'title.task_edit'|trans({'%id%': category.id|default('')}),
-        addit: task.title,
+        page_title: 'title.tag_edit'|trans({'%id%': tag.id|default('')}),
+        addit: tag.title,
         form: form,
         submit_label: 'action.edit'|trans,
-        back_to_list_path: 'category_index',
+        back_to_list_path: 'tag_index',
     } %}
 {% endblock %}

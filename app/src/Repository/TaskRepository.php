@@ -7,6 +7,7 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Entity\Tag;
 use App\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Exception\ORMException;
@@ -114,6 +115,27 @@ class TaskRepository extends ServiceEntityRepository
         return $qb->select($qb->expr()->countDistinct('task.id'))
             ->where('task.category = :category')
             ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Count tasks by tag.
+     *
+     * @param Tag $tag Category
+     *
+     * @return int Number of tasks in tag
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByTag(Tag $tag): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('task.id'))
+            ->where('task.tag = :tag')
+            ->setParameter(':category', $tag)
             ->getQuery()
             ->getSingleScalarResult();
     }

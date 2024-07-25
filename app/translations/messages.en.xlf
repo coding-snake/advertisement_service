@@ -11,7 +11,10 @@
     -->
 
 
-
+    <trans-unit id="title.tag_delete">
+        <source>title.tag_delete</source>
+        <target>Usuń tag: </target>
+    </trans-unit>
 
     <trans-unit id="action_logout">
         <source>action_logout</source>
