@@ -8,6 +8,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Task;
+use App\Entity\User;
 use App\Form\Type\TaskType;
 use App\Service\TaskServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -102,7 +103,12 @@ class TaskController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
         $task = new Task();
+        $task->setAuthor($user);
+
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 

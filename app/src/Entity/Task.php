@@ -80,8 +80,16 @@ class Task
     #[Assert\Length(min: 3, max: 255)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    private ?User $author = null;
+    /**
+     * Author.
+     *
+     * @var User|null
+     */
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type(User::class)]
+    private ?User $author;
 
     #[ORM\ManyToOne(targetEntity: Tag::class)]
     private ?Tag $tag = null;

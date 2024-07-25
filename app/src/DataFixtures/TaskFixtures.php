@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Task fixtures.
  */
@@ -9,10 +10,8 @@ use App\Entity\Category;
 use App\Entity\Tag;
 use App\Entity\Task;
 use App\Entity\User;
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker\Generator;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * Class TaskFixtures.
@@ -35,25 +34,13 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
         $this->createMany(100, 'tasks', function (int $i) {
             $task = new Task();
             $task->setTitle($this->faker->sentence);
-            $task->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
-                    $this->faker->dateTimeBetween('-100 days', '-1 days')
-                )
-            );
-            $task->setUpdatedAt(
-                DateTimeImmutable::createFromMutable(
-                    $this->faker->dateTimeBetween('-100 days', '-1 days')
-                )
-            );
+            $task->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
+            $task->setUpdatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $task->setCategory($category);
-
             /** @var array<array-key, Tag> $tags */
-            $tags = $this->getRandomReferences(
-                'tags',
-                $this->faker->numberBetween(0, 5)
-            );
+            $tags = $this->getRandomReferences('tags', $this->faker->numberBetween(0, 5));
             foreach ($tags as $tag) {
                 $task->setTag($tag);
             }
@@ -64,7 +51,6 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
 
             return $task;
         });
-
         $this->manager->flush();
     }
 
