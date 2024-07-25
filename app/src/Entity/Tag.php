@@ -1,26 +1,27 @@
 <?php
 
 /**
- * Task entity.
+ * Tag entity.
  */
 
 namespace App\Entity;
 
-use App\Repository\TaskRepository;
+use App\Repository\TagRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Task.
+ * Class Tag.
  *
  * @psalm-suppress MissingConstructor
  */
-#[ORM\Entity(repositoryClass: TaskRepository::class)]
-#[ORM\Table(name: 'tasks')]
-class Task
+#[ORM\Entity(repositoryClass: TagRepository::class)]
+#[ORM\Table(name: 'tags')]
+class Tag
 {
-    /**
+   /**
      * Primary key.
      */
     #[ORM\Id]
@@ -56,25 +57,6 @@ class Task
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 64)]
     private ?string $title = null;
-
-    /**
-     * Category.
-     */
-    #[ORM\ManyToOne(targetEntity: Category::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
-
-    /**
-     * Content.
-     */
-    #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\Type('string')]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max: 255)]
-    private ?string $content = null;
-
-    #[ORM\ManyToOne]
-    private ?User $author = null;
 
     /**
      * Getter for Id.
@@ -115,7 +97,6 @@ class Task
     {
         return $this->updatedAt;
     }
-
     /**
      * Setter for updated at.
      *
@@ -144,65 +125,5 @@ class Task
     public function setTitle(?string $title): void
     {
         $this->title = $title;
-    }
-
-    /**
-     * Get the category.
-     *
-     * @return Category|null The category entity or null if not set
-     */
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set the category.
-     *
-     * @param Category|null $category The category entity to set
-     *
-     * @return $this The current instance
-     */
-    public function setCategory(?Category $category): static
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Getter for content.
-     *
-     * @return string|null Title
-     */
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    /**
-     * Setter for content.
-     *
-     * @param string $content The content of the entity
-     *
-     * @return $this The current instance
-     */
-    public function setContent(string $content): static
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?User $author): static
-    {
-        $this->author = $author;
-
-        return $this;
     }
 }
