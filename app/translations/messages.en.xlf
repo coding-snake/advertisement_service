@@ -2,10 +2,30 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
+    <!--
+    ——— TEMPLATE ———
+    <trans-unit id="">
+        <source></source>
+        <target></target>
+    </trans-unit>
+    -->
+
+
+
+
+    <trans-unit id="action_logout">
+        <source>action_logout</source>
+        <target>Wyloguj się</target>
+    </trans-unit>
+    <trans-unit id="action_login">
+        <source>action_login</source>
+        <target>Zaloguj się</target>
+    </trans-unit>
+
     <!-- OGLOSZENIA INDEX -->
       <trans-unit id="title.task_list">
         <source>title.task_list</source>
-        <target>lista postów od najnowszego do najstarszego (na podstawie ostatniej edycji) z paginacją po 10 rekordów na stronie</target>
+        <target>lista postów</target>
       </trans-unit>
       <trans-unit id="action.create">
         <source>action.create</source>
