@@ -31,9 +31,11 @@
             </tr>
             <tr>
                 <th>
-                    <a href="{{ url('task_delete', {id: task.id})  }}" title="{{ 'action.delete'|trans }}">
-                        {{ 'action.delete'|trans }}
-                    </a>
+                    {% if is_granted('DELETE', task) %}
+                        <a href="{{ url('task_delete', {id: task.id})  }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
+                    {% endif %}
                 </th>
             </tr>
         </table>
