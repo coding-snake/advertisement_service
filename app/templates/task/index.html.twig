@@ -43,7 +43,7 @@
                             {{ task.category.title }}
                         </a>
                     </td>
-                    <td>{{ task.author }}</td>
+                    <td>{{ task.author.email }}</td>
                     <td>
                         <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
