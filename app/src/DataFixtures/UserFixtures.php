@@ -53,6 +53,12 @@ class UserFixtures extends AbstractBaseFixtures
         $example_user->setPassword($this->passwordHasher->hashPassword($example_user, 'user1234'));
         $this->manager->persist($example_user);
 
+        $anon = new User();
+        $anon->setEmail('anon@example.com');
+        $anon->setRoles([UserRole::ROLE_USER->value]);
+        $anon->setPassword($this->passwordHasher->hashPassword($anon, 'anon1234'));
+        $this->manager->persist($anon);
+
         $this->manager->flush();
     }
 }

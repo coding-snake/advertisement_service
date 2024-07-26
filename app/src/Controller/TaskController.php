@@ -11,6 +11,7 @@ use App\Entity\Task;
 use App\Entity\User;
 use App\Form\Type\TaskType;
 use App\Service\TaskServiceInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,18 +102,22 @@ class TaskController extends AbstractController
         name: 'task_create',
         methods: 'GET|POST',
     )]
-    public function create(Request $request): Response
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
-        /** @var User $user */
-        $user = $this->getUser();
-
         $task = new Task();
-        $task->setAuthor($user);
-
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($this->getUser()) {
+                $task->setAuthor($this->getUser());
+            } else {
+                $anon = $entityManager->getRepository(User::class)->findOneBy(['email' => 'anon@example.com']);
+                if ($anon) {
+                    $task->setAuthor($anon);
+                }
+            }
+
             $this->taskService->save($task);
 
             $this->addFlash(

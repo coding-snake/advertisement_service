@@ -16,22 +16,6 @@
         <main role="main" class="container-fluid">
             <div class="container-fluid">
                 {% include 'default/_flash_messages.html.twig' %}
-                <div>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <a href="{{ url('app_logout') }}">
-                            {{ 'action_logout'|trans }}
-                        </a>
-                    {% else %}
-                        <a href="{{ url('app_login') }}">
-                            {{ 'action_login'|trans }}
-                        </a>
-                    {% endif %}
-                    <a href="{{ url('task_index') }}">{{ 'title.task_list'|trans }}</a>
-                    <a href="{{ url('category_index') }}">{{ 'title.categories_title'|trans }}</a>
-                    <a href="{{ url('tag_index') }}">{{ 'title.tags_title'|trans }}</a>
-                </div>
-
-
                 {% block body %}{% endblock %}
             </div>
         </main>
