@@ -74,6 +74,22 @@ class TaskService implements TaskServiceInterface
     }
 
     /**
+     * Get part of accepted paginated list.
+     *
+     * @param int      $page     Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListAcc(int $page): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->taskRepository->queryAcc(),
+            $page,
+            self::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+    /**
      * Save entity.
      *
      * @param Task $task task entity

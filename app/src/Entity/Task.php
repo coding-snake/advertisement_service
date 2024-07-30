@@ -66,12 +66,12 @@ class Task
 
     /**
      * Tag.
-
-    #[ORM\ManyToOne(targetEntity: Tag::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Tag $tag = null;
-
-    /**
+     *
+     * #[ORM\ManyToOne(targetEntity: Tag::class)]
+     * #[ORM\JoinColumn(nullable: false)]
+     * private ?Tag $tag = null;
+     *
+     * /**
      * Content.
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -82,8 +82,6 @@ class Task
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
@@ -92,6 +90,10 @@ class Task
 
     #[ORM\ManyToOne(targetEntity: Tag::class)]
     private ?Tag $tag = null;
+
+    #[ORM\Column(type: 'boolean')]
+    #[Assert\Type('boolean')]
+    private ?bool $isAccepted = false;
 
     /**
      * Getter for Id.
@@ -187,7 +189,6 @@ class Task
         return $this;
     }
 
-
     /**
      * Getter for content.
      *
@@ -228,7 +229,7 @@ class Task
      * Get the tag.
      *
      * @return Tag|null The tag entity or null if not set
-    */
+     */
     public function getTag(): ?Tag
     {
         return $this->tag;
@@ -240,10 +241,22 @@ class Task
      * @param Tag|null $tag The tag entity to set
      *
      * @return $this The current instance
-    */
+     */
     public function setTag(?Tag $tag): static
     {
         $this->tag = $tag;
+
+        return $this;
+    }
+
+    public function getIsAccepted(): ?bool
+    {
+        return $this->isAccepted;
+    }
+
+    public function setIsAccepted(bool $isAccepted): static
+    {
+        $this->isAccepted = $isAccepted;
 
         return $this;
     }

@@ -27,6 +27,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'task.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'task.title') }}</th>
                 <th>{{ 'label.category'|trans }}</th>
+                <th>{{ 'label.isAccepted'|trans }}</th>
                 <th>{{ 'label.author'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -42,6 +43,9 @@
                         <a href="{{ url('category_show', {id: task.category.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ task.category.title }}
                         </a>
+                    </td>
+                    <td>
+                        {{ task.isAccepted ? 'Yes' : 'No'}}
                     </td>
                     <td>{{ task.author.email }}</td>
                     <td>

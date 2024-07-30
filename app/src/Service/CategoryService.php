@@ -98,7 +98,7 @@ class CategoryService implements CategoryServiceInterface
             $result = $this->taskRepository->countByCategory($category);
 
             return !($result > 0);
-        } catch (NoResultException | NonUniqueResultException) {
+        } catch (NoResultException|NonUniqueResultException) {
             return false;
         }
     }

@@ -44,10 +44,25 @@ class TaskController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(name: 'task_index', methods: 'GET')]
+    #[Route('/task', name: 'task_index', methods: 'GET')]
     public function index(#[MapQueryParameter] int $page = 1): Response
     {
         $pagination = $this->taskService->getPaginatedList($page);
+
+        return $this->render('task/index.html.twig', ['pagination' => $pagination]);
+    }
+
+    /**
+     * IndexAccepted action.
+     *
+     * @param int $page starting page number
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/accepted', name: 'task_index_acc', methods: 'GET')]
+    public function indexAccepted(#[MapQueryParameter] int $page = 1): Response
+    {
+        $pagination = $this->taskService->getPaginatedListAcc($page);
 
         return $this->render('task/index.html.twig', ['pagination' => $pagination]);
     }
@@ -94,7 +109,8 @@ class TaskController extends AbstractController
     /**
      * Create action.
      *
-     * @param Request $request HTTP request
+     * @param Request                $request       HTTP request
+     * @param EntityManagerInterface $entityManager Entity manager
      *
      * @return Response HTTP response
      */
@@ -112,11 +128,13 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($this->getUser()) {
                 $task->setAuthor($this->getUser());
+                $task->setIsAccepted(true);
             } else {
                 $anon = $entityManager->getRepository(User::class)->findOneBy(['email' => 'anon@example.com']);
                 if ($anon) {
                     $task->setAuthor($anon);
                 }
+                $task->setIsAccepted(false);
             }
 
             $this->taskService->save($task);
@@ -175,7 +193,6 @@ class TaskController extends AbstractController
             ]
         );
     }
-
 
     /**
      * Delete action.

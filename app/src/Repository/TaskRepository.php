@@ -72,6 +72,19 @@ class TaskRepository extends ServiceEntityRepository
     }
 
     /**
+     * Query Accepted records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryAcc(): QueryBuilder
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.isAccepted = :accepted')
+            ->setParameter('accepted', true)
+            ->orderBy('t.updatedAt', 'DESC');
+    }
+
+    /**
      * Save entity.
      *
      * @param Task $task task entity
