@@ -24,9 +24,11 @@
         <table>
             <tr>
                 <th>
-                    <a href="{{ url('task_edit', {id: task.id})  }}" title="{{ 'action.update'|trans }}">
-                        {{ 'action.update'|trans }}
-                    </a>
+                    {% if is_granted('EDIT', task) %}
+                        <a href="{{ url('task_edit', {id: task.id})  }}" title="{{ 'action.update'|trans }}">
+                            {{ 'action.update'|trans }}
+                        </a>
+                    {% endif %}
                 </th>
             </tr>
             <tr>
@@ -41,9 +43,15 @@
         </table>
         <br><br>
         <p>
-            <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
-            </a>
+            {% if is_granted('ADMIN', task) %}
+                <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                    {{ 'action.back_to_list'|trans }}
+                </a>
+            {% else %}
+                <a href="{{ url('task_index_acc') }}" title="{{ 'action.back_to_list'|trans }}">
+                    {{ 'action.back_to_list'|trans }}
+                </a>
+            {% endif %}
         </p>
     {% else %}
         <p>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Task voter.
  */
@@ -37,6 +38,13 @@ class TaskVoter extends Voter
     private const DELETE = 'DELETE';
 
     /**
+     * Admin permission.
+     *
+     * @const string
+     */
+    private const ADMIN = 'DELETE';
+
+    /**
      * Determines if the attribute and subject are supported by this voter.
      *
      * @param string $attribute An attribute
@@ -46,7 +54,7 @@ class TaskVoter extends Voter
      */
     protected function supports(string $attribute, mixed $subject): bool
     {
-        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
+        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::ADMIN])
             && $subject instanceof Task;
     }
 
@@ -74,6 +82,7 @@ class TaskVoter extends Voter
             self::EDIT => $this->canEdit($subject, $user),
             self::VIEW => $this->canView($subject, $user),
             self::DELETE => $this->canDelete($subject, $user),
+            self::ADMIN => $this->isAdmin($subject, $user),
             default => false,
         };
     }
@@ -88,7 +97,19 @@ class TaskVoter extends Voter
      */
     private function canEdit(Task $task, UserInterface $user): bool
     {
-        return $task->getAuthor() === $user;
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return true;
+        }
+
+        if ($task->getAuthor() === $user) {
+            if ('anon@example.com' === $user->getEmail()) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -114,7 +135,31 @@ class TaskVoter extends Voter
      */
     private function canDelete(Task $task, UserInterface $user): bool
     {
-        // return $task->getAuthor() === $user;
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return true;
+        }
+
+        if ($task->getAuthor() === $user) {
+            if ('anon@example.com' === $user->getEmail()) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if user is admin.
+     *
+     * @param Task          $task Task entity
+     * @param UserInterface $user User
+     *
+     * @return bool Result
+     */
+    private function isAdmin(Task $task, UserInterface $user): bool
+    {
         if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
             return true;
         } else {

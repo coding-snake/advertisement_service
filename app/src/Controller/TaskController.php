@@ -45,6 +45,7 @@ class TaskController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/task', name: 'task_index', methods: 'GET')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(#[MapQueryParameter] int $page = 1): Response
     {
         $pagination = $this->taskService->getPaginatedList($page);
@@ -64,7 +65,7 @@ class TaskController extends AbstractController
     {
         $pagination = $this->taskService->getPaginatedListAcc($page);
 
-        return $this->render('task/index.html.twig', ['pagination' => $pagination]);
+        return $this->render('task/index_admin.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -162,6 +163,7 @@ class TaskController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'task_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'task')]
     public function edit(Request $request, Task $task): Response
     {
         $form = $this->createForm(
