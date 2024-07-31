@@ -48,8 +48,10 @@ class TaskRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
-            ->orderBy('task.updatedAt', 'DESC');
+        return $this->createQueryBuilder('t')
+            ->where('t.isAccepted = :accepted')
+            ->setParameter('accepted', false)
+            ->orderBy('t.updatedAt', 'DESC');
     }
 
     /**

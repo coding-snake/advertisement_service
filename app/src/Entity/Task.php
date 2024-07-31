@@ -7,6 +7,8 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -65,13 +67,6 @@ class Task
     private ?Category $category = null;
 
     /**
-     * Tag.
-     *
-     * #[ORM\ManyToOne(targetEntity: Tag::class)]
-     * #[ORM\JoinColumn(nullable: false)]
-     * private ?Tag $tag = null;
-     *
-     * /**
      * Content.
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -88,12 +83,23 @@ class Task
     #[Assert\Type(User::class)]
     private ?User $author;
 
-    #[ORM\ManyToOne(targetEntity: Tag::class)]
-    private ?Tag $tag = null;
-
     #[ORM\Column(type: 'boolean')]
     #[Assert\Type('boolean')]
     private ?bool $isAccepted = false;
+
+    /**
+     * Tags.
+     *
+     * @var ArrayCollection<int, Tag>
+     */
+    #[ORM\ManyToMany(targetEntity: Tag::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'tasks_tags')]
+    private Collection $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * Getter for Id.
@@ -225,30 +231,6 @@ class Task
         return $this;
     }
 
-    /**
-     * Get the tag.
-     *
-     * @return Tag|null The tag entity or null if not set
-     */
-    public function getTag(): ?Tag
-    {
-        return $this->tag;
-    }
-
-    /**
-     * Set the tag.
-     *
-     * @param Tag|null $tag The tag entity to set
-     *
-     * @return $this The current instance
-     */
-    public function setTag(?Tag $tag): static
-    {
-        $this->tag = $tag;
-
-        return $this;
-    }
-
     public function getIsAccepted(): ?bool
     {
         return $this->isAccepted;
@@ -259,5 +241,37 @@ class Task
         $this->isAccepted = $isAccepted;
 
         return $this;
+    }
+
+    /**
+     * Getter for tags.
+     *
+     * @return Collection<int, Tag> Tags collection
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add tag.
+     *
+     * @param Tag $tag Tag entity
+     */
+    public function addTag(Tag $tag): void
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+    }
+
+    /**
+     * Remove tag.
+     *
+     * @param Tag $tag Tag entity
+     */
+    public function removeTag(Tag $tag): void
+    {
+        $this->tags->removeElement($tag);
     }
 }

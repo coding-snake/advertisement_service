@@ -20,6 +20,15 @@
             <dd>{{  task.category.title }}</dd>
             <dt>{{ 'label.content'|trans }}</dt>
             <dd>{{  task.content }}</dd>
+            <dt>{{ 'label.tags'|trans }}</dt>
+            <dd>
+                {% for tag in task.tags %}
+                    {{ tag.title }}
+                    {% if not loop.last %}
+                        {{ ', ' }}
+                    {% endif %}
+                {% endfor %}
+            </dd>
         </dl>
         <table>
             <tr>
@@ -44,6 +53,9 @@
         <br><br>
         <p>
             {% if is_granted('ADMIN', task) %}
+                <a href="{{ url('task_accept', {id: task.id}) }}" title="{{ 'action.accept'|trans }}">
+                            {{ action.accept }}
+                </a>
                 <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
                     {{ 'action.back_to_list'|trans }}
                 </a>

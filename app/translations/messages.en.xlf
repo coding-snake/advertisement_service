@@ -10,6 +10,15 @@
     </trans-unit>
     -->
 
+    <trans-unit id="title.task_list_admin">
+        <source>title.task_list_admin</source>
+        <target>lista postów (admin)</target>
+    </trans-unit>
+
+    <trans-unit id="title.tags_title">
+        <source>title.tags_title</source>
+        <target>lista tagów</target>
+    </trans-unit>
 
     <trans-unit id="title.tag_delete">
         <source>title.tag_delete</source>

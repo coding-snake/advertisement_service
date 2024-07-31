@@ -14,6 +14,7 @@ use App\Service\TaskServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
@@ -232,5 +233,20 @@ class TaskController extends AbstractController
                 'task' => $task,
             ]
         );
+    }
+
+    /**
+     * @param Task $task
+     * @param EntityManagerInterface $entityManager
+     * @return RedirectResponse
+     */
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/{id}/accept', name: 'task_accept', methods: 'GET')]
+    public function toggleAccept(Task $task, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        $task->setIsAccepted(!$task->getIsAccepted());
+        $entityManager->flush();
+
+        return $this->redirectToRoute('task_index');
     }
 }
