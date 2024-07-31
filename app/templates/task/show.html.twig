@@ -52,9 +52,9 @@
         </table>
         <br><br>
         <p>
-            {% if is_granted('ADMIN', task) %}
+            {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ url('task_accept', {id: task.id}) }}" title="{{ 'action.accept'|trans }}">
-                            {{ action.accept }}
+                    {{ 'action.accept'|trans }}
                 </a>
                 <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
                     {{ 'action.back_to_list'|trans }}

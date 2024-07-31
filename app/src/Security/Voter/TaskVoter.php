@@ -42,7 +42,7 @@ class TaskVoter extends Voter
      *
      * @const string
      */
-    private const ADMIN = 'DELETE';
+    private const ADMIN = 'ADMIN';
 
     /**
      * Determines if the attribute and subject are supported by this voter.
@@ -160,10 +160,6 @@ class TaskVoter extends Voter
      */
     private function isAdmin(Task $task, UserInterface $user): bool
     {
-        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
-            return true;
-        } else {
-            return false;
-        }
+        return in_array('ROLE_ADMIN', $user->getRoles(), true);
     }
 }

@@ -26,11 +26,11 @@
                             {{ 'action_login'|trans }}
                         </a>&nbsp;&nbsp;&nbsp;
                     {% endif %}
-                    {% if is_granted('ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('task_index') }}">{{ 'title.task_list_admin'|trans }}</a>&nbsp;&nbsp;&nbsp;
                     {% else %}
-                        <a href="{{ url('task_index_acc') }}">{{ 'title.task_list'|trans }}</a>&nbsp;&nbsp;&nbsp;
                     {% endif %}
+                        <a href="{{ url('task_index_acc') }}">{{ 'title.task_list'|trans }}</a>&nbsp;&nbsp;&nbsp;
                         <a href="{{ url('category_index') }}">{{ 'title.categories_title'|trans }}</a>&nbsp;&nbsp;&nbsp;
                         <a href="{{ url('tag_index') }}">{{ 'title.tags_title'|trans }}</a>&nbsp;&nbsp;&nbsp;
                 </div>

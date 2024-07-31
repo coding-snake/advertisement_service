@@ -15,6 +15,16 @@
         <target>lista postów (admin)</target>
     </trans-unit>
 
+    <trans-unit id="label.author">
+        <source>label.author</source>
+        <target>Autor</target>
+    </trans-unit>
+
+    <trans-unit id="label.isAccepted">
+        <source>label.isAccepted</source>
+        <target>Zaakceptowano?</target>
+    </trans-unit>
+
     <trans-unit id="title.tags_title">
         <source>title.tags_title</source>
         <target>lista tagów</target>
