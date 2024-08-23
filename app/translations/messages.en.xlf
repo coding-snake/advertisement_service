@@ -10,6 +10,11 @@
     </trans-unit>
     -->
 
+    <trans-unit id="action.accept">
+        <source>action.accept</source>
+        <target>zaakceptuj</target>
+    </trans-unit>
+
     <trans-unit id="title.task_list_admin">
         <source>title.task_list_admin</source>
         <target>lista postów (admin)</target>

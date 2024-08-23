@@ -7,11 +7,14 @@
 {% block body %}
     <h1>{{ 'title.categories_title'|trans }}</h1>
 
+    {% if is_granted('ROLE_USER') %}
     <h2>
         <a href="{{ url('category_create')}}" title="{{ 'action.create'|trans }}">
             {{ 'action.create'|trans }}
         </a>
     </h2>
+    {% endif %}
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">

@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -55,6 +56,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route(
         '/create',
         name: 'category_create',
