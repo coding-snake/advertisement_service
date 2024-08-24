@@ -20,7 +20,7 @@ vendor/bin/phpcbf --standard=Symfony src/ --ignore=Kernel.php
 ---
 
 Serwis ogłoszeniowy
-    dostateczny     (2/6)
+    dostateczny     (5/6)
         📌 użytkownicy: administrator mający możliwość tworzenia, edycji i usuwania treści na stronie oraz użytkownik niezalogowany, mający możliwość anonimowego dodawania ogłoszeń,
             ✅ Administrator o danych logowania: admin@example.com i haśle admin1234
             ✅ Użytkownik niezalogowany działa poprzez podpinanie wszystkich anonimowych ogłoszeń do jednego użytkownika anonimowego o danych logowania: anon@example.com i haśle anon1234
@@ -48,6 +48,8 @@ Serwis ogłoszeniowy
 
         📌 administrator (logowanie, zmiana hasła, zmiana danych administratora),
             ✅ Logowanie działa poprzez /login
+            📌 Zmiana danych
+
 
     dobry           (0/6)
         ⭕ rejestracja i logowanie użytkowników,
