@@ -6,11 +6,13 @@
 
 namespace App\Controller;
 
+use App\Form\Type\UserFormData;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -21,55 +23,53 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/acc')]
 class AccController extends AbstractController
 {
-    /*
+    /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $categoryService category service
-     * @param TranslatorInterface      $translator      translator service
+     * @param UserServiceInterface $userService user service
+     * @param TranslatorInterface  $translator  translator service
      */
-    public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator)
-    {
+    public function __construct(
+        private readonly UserServiceInterface $userService,
+        private readonly TranslatorInterface $translator,
+        private readonly UserPasswordHasherInterface $passwordHasher
+    ) {
     }
 
     /*
      * Change account
      */
-    #[Route('/change', name: 'change_account', methods: ['POST'])]
+    #[Route('/change', name: 'change_account', methods: 'GET|POST')]
     #[IsGranted('ROLE_USER')]
-    public function changeAccount(Request $request, TranslatorInterface $translator): Response
+    public function changeAccount(Request $request): Response
     {
         $user = $this->getUser();
-        $form = $this->createForm(UserType::class, [
-            'current_email' => $user->getEmail(),
-        ]);
+        $userFormData = new UserFormData();
+        $userFormData->current_email = $user->getEmail();
+        $form = $this->createForm(UserType::class, $userFormData);
+
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            if ($data['current_email'] !== $user->getEmail()) {
-                $this->addFlash(
-                    'warning',
-                    $translator->trans('message.error_email')
-                );
-
-                return $this->redirectToRoute('change_account');
-            }
-            if ($data['current_password'] !== $user->getPassword()) {
-                $this->addFlash(
-                    'warning',
-                    $translator->trans('message.error_password')
-                );
+            if ($userFormData->current_email !== $user->getEmail()) {
+                $this->addFlash('warning', $this->translator->trans('message.error_email'));
 
                 return $this->redirectToRoute('change_account');
             }
 
-            $this->userService->updateEmailPassword($user, $data['new_email'], $data['new_password']);
+            if (!$this->passwordHasher->isPasswordValid($user, $userFormData->current_password)) {
+                $this->addFlash('warning', $this->translator->trans('message.error_password'));
 
-            $this->addFlash(
-                'succes',
-                $translator->trans('message.success_change')
-            );
-            return $this->redirectToRoute('chnage_account');
+                return $this->redirectToRoute('change_account');
+            }
+
+            $this->userService->updateEmailPassword($user, $userFormData->new_email, $userFormData->new_password);
+
+            $this->addFlash('success', $this->translator->trans('message.success_change'));
+
+            return $this->redirectToRoute('change_account');
         }
+
         return $this->render('acc/change_account.html.twig', [
             'form' => $form->createView(),
         ]);

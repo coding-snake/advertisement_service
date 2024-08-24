@@ -48,7 +48,7 @@ Serwis ogłoszeniowy
 
         📌 administrator (logowanie, zmiana hasła, zmiana danych administratora),
             ✅ Logowanie działa poprzez /login
-            📌 Zmiana danych
+            📌 Zmiana danych przez link (kiedy jesteśmy zalogowani) acc/change
 
 
     dobry           (0/6)
