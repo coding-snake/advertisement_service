@@ -6,9 +6,12 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\Type\RegisterType;
 use App\Form\Type\UserFormData;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,6 +74,36 @@ class AccController extends AbstractController
         }
 
         return $this->render('acc/change_account.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /*
+     * Register account
+     */
+    #[Route('/register', name: 'register_acc', methods: 'GET|POST')]
+    public function registerAccount(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $user = new User();
+
+        $form = $this->createForm(RegisterType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $this->passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($password);
+
+            $user->setEmail($form->get('email')->getData());
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('success', $this->translator->trans('message.success_register'));
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('acc/register.html.twig', [
             'form' => $form->createView(),
         ]);
     }
