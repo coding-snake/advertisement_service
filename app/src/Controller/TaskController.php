@@ -146,7 +146,7 @@ class TaskController extends AbstractController
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('task_index_acc');
         }
 
         return $this->render(

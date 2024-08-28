@@ -34,10 +34,12 @@ Projekt ten został stworzony w ramach zajęć _system interakcyjny — projekt_
    - 📌 administrator (logowanie, zmiana hasła, zmiana danych administratora),
      - ✅ Logowanie działą poprzez /login
      - ✅ Zimana danych działa poprzez acc/change
- - dobry (1/6)
+ - dobry (2/6)
    - 📌 rejestracja i logowanie użytkowników,
+     - ✅ Rejestracja możliwa poprzez acc/register
+     - ✅ Logowanie możliwe poprzez
    - 📌 zarządzanie kontem użytkownika (zmiana danych, zmiana hasła),
-     - ✅ Zmiana danych (i hasła) użytkownika możliwa pod adresem acc/change
+     - ✅ Zmiana danych (w tym hasła) użytkownika możliwa pod adresem acc/change
    - 📌 każdy użytkownik zarządza tylko swoimi ogłoszeniami (każda zmiana ogłoszenia wymaga aktywacji administratora),
    - 📌 zarządzanie kontami użytkowników przez administratora (zmiana hasła, zmiana danych),
    - 📌 CRUD dla tagów, tagowanie ogłoszeń,
