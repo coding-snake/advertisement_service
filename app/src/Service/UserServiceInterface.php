@@ -7,7 +7,7 @@
 namespace App\Service;
 
 use App\Entity\User;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -23,4 +23,13 @@ interface UserServiceInterface
      * @param string        $newPassword New Password
      */
     public function updateEmailPassword(User $user, string $newEmail, string $newPassword): void;
+
+    /**
+     * Get paginated list.
+     *
+     * @param int $page Page number
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedList(int $page): PaginationInterface;
 }

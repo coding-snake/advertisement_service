@@ -36,8 +36,10 @@ class TaskService implements TaskServiceInterface
      * @param TaskRepository     $taskRepository Task repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(private readonly TaskRepository $taskRepository, private readonly PaginatorInterface $paginator)
-    {
+    public function __construct(
+        private readonly TaskRepository $taskRepository,
+        private readonly PaginatorInterface $paginator
+    ) {
     }
 
     /**
@@ -76,7 +78,7 @@ class TaskService implements TaskServiceInterface
     /**
      * Get part of accepted paginated list.
      *
-     * @param int      $page     Page number
+     * @param int $page Page number
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */

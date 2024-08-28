@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -54,23 +55,31 @@ class AccController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($userFormData->current_email !== $user->getEmail()) {
+            if ($userFormData->current_email !== $user->getEmail() && !$this->isGranted('ROLE_ADMIN')) {
                 $this->addFlash('warning', $this->translator->trans('message.error_email'));
 
                 return $this->redirectToRoute('change_account');
             }
 
-            if (!$this->passwordHasher->isPasswordValid($user, $userFormData->current_password)) {
-                $this->addFlash('warning', $this->translator->trans('message.error_password'));
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->userService->updateEmailPassword($user, $userFormData->new_email, $userFormData->new_password);
+
+                $this->addFlash('success', $this->translator->trans('message.success_change'));
+
+                return $this->redirectToRoute('change_account');
+            } else {
+                if (!$this->passwordHasher->isPasswordValid($user, $userFormData->current_password)) {
+                    $this->addFlash('warning', $this->translator->trans('message.error_password'));
+
+                    return $this->redirectToRoute('change_account');
+                }
+
+                $this->userService->updateEmailPassword($user, $userFormData->new_email, $userFormData->new_password);
+
+                $this->addFlash('success', $this->translator->trans('message.success_change'));
 
                 return $this->redirectToRoute('change_account');
             }
-
-            $this->userService->updateEmailPassword($user, $userFormData->new_email, $userFormData->new_password);
-
-            $this->addFlash('success', $this->translator->trans('message.success_change'));
-
-            return $this->redirectToRoute('change_account');
         }
 
         return $this->render('acc/change_account.html.twig', [
@@ -106,5 +115,17 @@ class AccController extends AbstractController
         return $this->render('acc/register.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /*
+     * List of accounts
+     */
+    #[Route('/list', name: 'acc_list', methods: 'GET|POST')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function listAccounts(#[MapQueryParameter] int $page = 1): Response
+    {
+        $pagination = $this->userService->getPaginatedList($page);
+
+        return $this->render('acc/index_acc.html.twig', ['pagination' => $pagination]);
     }
 }
