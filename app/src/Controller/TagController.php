@@ -178,4 +178,25 @@ class TagController extends AbstractController
             ]
         );
     }
+
+    /**
+     * Show action.
+     *
+     * @param Tag $tag Tag
+     * @param int      $page     starting page number
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/tag/{id}',
+        name: 'tag_posts',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
+    )]
+    public function showTag(Tag $tag, #[MapQueryParameter] int $page = 1): Response
+    {
+        $pagination = $this->tagService->getPaginatedListPart($page, $tag);
+
+        return $this->render('tag/show_tags.html.twig', ['tag' => $tag, 'pagination' => $pagination]);
+    }
 }

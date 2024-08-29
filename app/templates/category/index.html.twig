@@ -39,11 +39,16 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.createdAt|format_date('long') }}</td>
                     <td>{{ category.updatedAt|format_date('long') }}</td>
-                    <td>{{ category.title }}</td>
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'action.show'|trans }}
+                            {{category.title}}
                         </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('category_read', {id: category.id}) }}" title="{{ 'action.read'|trans }}">
+                            {{ 'action.read'|trans }}
+                        </a>
+
                     </td>
                     <td>
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">

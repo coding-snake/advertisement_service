@@ -97,8 +97,25 @@ class TagService implements TagServiceInterface
             $result = $this->taskRepository->countByTag($tag);
 
             return !($result > 0);
-        } catch (NoResultException|NonUniqueResultException) {
+        } catch (NoResultException | NonUniqueResultException) {
             return false;
         }
+    }
+
+    /**
+     * Get part of paginated list.
+     *
+     * @param int $page Page number
+     * @param Tag $tag  Tag
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListPart(int $page, Tag $tag): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->taskRepository->queryPartTags($tag),
+            $page,
+            self::PAGINATOR_ITEMS_PER_PAGE
+        );
     }
 }

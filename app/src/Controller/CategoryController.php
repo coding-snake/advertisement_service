@@ -30,8 +30,10 @@ class CategoryController extends AbstractController
      * @param CategoryServiceInterface $categoryService category service
      * @param TranslatorInterface      $translator      translator service
      */
-    public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly TranslatorInterface $translator)
-    {
+    public function __construct(
+        private readonly CategoryServiceInterface $categoryService,
+        private readonly TranslatorInterface $translator
+    ) {
     }
 
     /**
@@ -170,5 +172,23 @@ class CategoryController extends AbstractController
                 'category' => $category,
             ]
         );
+    }
+
+    /**
+     * Show action.
+     *
+     * @param Category $category Task
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/{id}',
+        name: 'category_read',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
+    )]
+    public function read(Category $category): Response
+    {
+        return $this->render('category/read.html.twig', ['category' => $category]);
     }
 }

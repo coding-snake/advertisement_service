@@ -74,6 +74,22 @@ class TaskRepository extends ServiceEntityRepository
     }
 
     /**
+     * Query Part records.
+     *
+     * @param Tag $tag Tag
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryPartTags(Tag $tag): QueryBuilder
+    {
+        return $this->createQueryBuilder('t')
+            ->innerJoin('t.tags', 'tgs')
+            ->where('tgs = :tag')
+            ->setParameter('tag', $tag)
+            ->orderBy('t.updatedAt', 'DESC');
+    }
+
+    /**
      * Query Accepted records.
      *
      * @return QueryBuilder Query builder

@@ -23,7 +23,7 @@ Projekt ten został stworzony w ramach zajęć _system interakcyjny — projekt_
    - ✅ CRUD dla kategorii, łączenie kategorii z ogłoszeniami (użytkownik niezalogowany ma wyłącznie możliwość dodania ogłoszenia do istniejących kategorii),
      - Kategorie połączone są z ogłoszeniami za pomocą pola relacji, podczas tworzenia ogłoszenia dodajemy je do danej kategorii 
      - (C) Akcja tworzenia, dostępna pod adresem `/category/create` 
-     - (R) Akcja czytania, prowadzi nas do listy ogłoszeń dla danej kategorii, dostępna pod adresem `/task/category/{id}` 
+     - (R) Akcja czytania, dostępna pod adresem `/category/{id}` 
      - (U) Akcja aktualizacji, dostępna pod adresem `/category/{id}/edit` 
      - (D) Akcja usuniecia, dostępna pod adresem `/category/{id}/delete`
    - ✅ wyświetlanie listy ogłoszeń dla danej kategorii, 
@@ -34,7 +34,7 @@ Projekt ten został stworzony w ramach zajęć _system interakcyjny — projekt_
    - ✅ administrator (logowanie, zmiana hasła, zmiana danych administratora),
      - Logowanie działą poprzez `/login`
      - Zmiana danych działa poprzez `/acc/change`
- - dobry (5/6)
+ - dobry (6/6)
    - ✅ rejestracja i logowanie użytkowników,
      - Rejestracja możliwa poprzez `/acc/register`
      - Logowanie możliwe poprzez `/login`
@@ -51,7 +51,8 @@ Projekt ten został stworzony w ramach zajęć _system interakcyjny — projekt_
      - (R) Akcja czytania, dostępna pod adresem `/tag/{id}`
      - (U) Akcja aktualizacji, dostępna pod adresem `/tag/{id}/edit`
      - (D) Akcja usunięcia, doestępna pod adresem `/tag/{id}/delete`
-   - 📌 filtrowanie listy ogłoszeń względem tagów,
+   - ✅ filtrowanie listy ogłoszeń względem tagów,
+     - Dla danego tagu dostępne pod adresem `/tag/tag/{id}` 
  - bardzo dobry
    - 📌 zmiana uprawnień użytkowników (zmiana na administratora, odbieranie uprawnień, brak możliwości odebrania uprawnień ostatniemu administratorowi),
    - 📌 blokowanie kont użytkowników,

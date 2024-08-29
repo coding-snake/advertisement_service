@@ -36,4 +36,14 @@ interface TagServiceInterface
      * @param Tag $tag Tag entity
      */
     public function delete(Tag $tag): void;
+
+    /**
+     * Get part of paginated list.
+     *
+     * @param int $page Page number
+     * @param Tag $tag  Tag
+     *
+     * @return PaginationInterface<string, mixed> Paginated list
+     */
+    public function getPaginatedListPart(int $page, Tag $tag): PaginationInterface;
 }
