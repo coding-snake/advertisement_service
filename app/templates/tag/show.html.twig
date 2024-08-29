@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.tag_details'|trans({'%id%': tag.id|default('')}) }} {{ ' (R)' }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.tag_details'|trans({'%id%': tag.id|default('')}) }} {{ ' (R)' }}</h1>
+    {% if tag is defined and tag|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ tag.id }}</dd>
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ tag.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'label.updated_at'|trans }}</dt>
+            <dd>{{ tag.updatedAt|format_date('long') }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{  tag.title }}</dd>
+        </dl>
+        <table>
+            <tr>
+                <th>
+                    {% if is_granted('EDIT', tag) %}
+                        <a href="{{ url('tag_edit', {id: tag.id})  }}" title="{{ 'action.update'|trans }}">
+                            {{ 'action.update'|trans }}
+                        </a>
+                    {% endif %}
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    {% if is_granted('DELETE', tag) %}
+                        <a href="{{ url('tag_delete', {id: tag.id})  }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
+                    {% endif %}
+                </th>
+            </tr>
+        </table>
+        <br><br>
+        <p>
+            <a href="{{ url('tag_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                    {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

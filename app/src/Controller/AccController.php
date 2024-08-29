@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Form\Type\RegisterType;
 use App\Form\Type\UserFormData;
 use App\Form\Type\UserType;
+use App\Repository\UserRepository;
 use App\Service\UserServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,11 +46,25 @@ class AccController extends AbstractController
      */
     #[Route('/change', name: 'change_account', methods: 'GET|POST')]
     #[IsGranted('ROLE_USER')]
-    public function changeAccount(Request $request): Response
+    public function changeAccount(Request $request, UserRepository $userRepository): Response
     {
         $user = $this->getUser();
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $id = $request->query->get('id');
+
+            if ($id) {
+                $user = $userRepository->find($id);
+                if (!$user) {
+                    $this->addFlash('warning', $this->translator->trans('message.error_user_not_found'));
+
+                    return $this->redirectToRoute('change_account');
+                }
+            }
+        }
+
         $userFormData = new UserFormData();
         $userFormData->current_email = $user->getEmail();
+        $userFormData->current_password = "example";
         $form = $this->createForm(UserType::class, $userFormData);
 
         $form->handleRequest($request);
