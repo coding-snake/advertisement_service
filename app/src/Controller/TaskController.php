@@ -34,8 +34,10 @@ class TaskController extends AbstractController
      * @param TaskServiceInterface $taskService task service
      * @param TranslatorInterface  $translator  translator service
      */
-    public function __construct(private readonly TaskServiceInterface $taskService, private readonly TranslatorInterface $translator)
-    {
+    public function __construct(
+        private readonly TaskServiceInterface $taskService,
+        private readonly TranslatorInterface $translator
+    ) {
     }
 
     /**
@@ -236,8 +238,9 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @param Task $task
+     * @param Task                   $task
      * @param EntityManagerInterface $entityManager
+     *
      * @return RedirectResponse
      */
     #[IsGranted('ROLE_ADMIN')]

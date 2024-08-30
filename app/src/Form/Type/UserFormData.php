@@ -13,8 +13,8 @@ use Symfony\Component\Form\AbstractType;
  */
 class UserFormData extends AbstractType
 {
-    public ?string $current_email = null;
-    public ?string $new_email = null;
-    public ?string $current_password = null;
-    public ?string $new_password = null;
+    public ?string $currentEmail = null;
+    public ?string $newEmail = null;
+    public ?string $currentPassword = null;
+    public ?string $newPassword = null;
 }

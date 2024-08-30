@@ -29,6 +29,12 @@ class UserService implements UserServiceInterface
      */
     private const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * @param EntityManagerInterface $entityManager
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @param PaginatorInterface $paginator
+     * @param UserRepository $userRepository
+     */
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly UserPasswordHasherInterface $passwordHasher,
@@ -39,6 +45,11 @@ class UserService implements UserServiceInterface
 
     /**
      * Updated email and password.
+     *
+     * @param User $user
+     * @param string $newEmail
+     * @param string $newPassword
+     * @return void
      */
     public function updateEmailPassword(User $user, string $newEmail, string $newPassword): void
     {

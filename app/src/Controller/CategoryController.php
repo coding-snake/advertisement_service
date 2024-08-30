@@ -95,6 +95,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Category $category): Response
     {
@@ -136,6 +137,7 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {

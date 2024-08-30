@@ -9,6 +9,84 @@
         <target></target>
     </trans-unit>
     -->
+    <trans-unit id="title.tag_create">
+        <source>title.tag_create</source>
+        <target>Stwórz nowy tag</target>
+    </trans-unit>
+
+    <trans-unit id="title.tag_list">
+        <source>title.tag_list</source>
+        <target>Lista tagów dla tagu </target>
+    </trans-unit>
+
+    <trans-unit id="title.tag_edit">
+        <source>title.tag_edit</source>
+        <target>Edytuj tag</target>
+    </trans-unit>
+
+    <trans-unit id="title.tag_details">
+        <source>title.tag_details</source>
+        <target>Detale tagu</target>
+    </trans-unit>
+
+    <trans-unit id="title.category_details">
+        <source>title.category_details</source>
+        <target>Detale kategorii</target>
+    </trans-unit>
+
+    <trans-unit id="action.read">
+        <source>action.read</source>
+        <target>Przeczytaj (R)</target>
+    </trans-unit>
+    <trans-unit id="title.register">
+        <source>title.register</source>
+        <target>Zarejestruj się</target>
+    </trans-unit>
+
+    <trans-unit id="label.log_in">
+        <source>label.log_in</source>
+        <target>zaloguj się</target>
+    </trans-unit>
+
+    <trans-unit id="label.password">
+        <source>label.password</source>
+        <target>Hasło: </target>
+    </trans-unit>
+
+    <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>E-mail: </target>
+    </trans-unit>
+
+    <trans-unit id="label.logout">
+        <source>label.logout</source>
+        <target>Wyloguj się :(</target>
+    </trans-unit>
+
+    <trans-unit id="you_are_logged_in_as">
+        <source>you_are_logged_in_as</source>
+        <target>Jesteś zarejestrowan(a/y) jako: </target>
+    </trans-unit>
+
+    <trans-unit id="label.sign_in">
+        <source>label.sign_in</source>
+        <target>Zaloguj się</target>
+    </trans-unit>
+
+    <trans-unit id="register_acc">
+        <source>register_acc</source>
+        <target>Zarejestruj się !</target>
+    </trans-unit>
+
+    <trans-unit id="acc_list">
+        <source>acc_list</source>
+        <target>lista kont użytkowników (admin)</target>
+    </trans-unit>
+
+    <trans-unit id="change_account">
+        <source>change_account</source>
+        <target>Zmień dane konta</target>
+    </trans-unit>
 
     <trans-unit id="action.accept">
         <source>action.accept</source>
@@ -119,7 +197,7 @@
       <!-- CATEGORY INDEX -->
       <trans-unit id="title.categories_title">
         <source>title.categories_title</source>
-        <target>Lista kategorii</target>
+        <target>lista kategorii</target>
       </trans-unit>
       <!-- CATEGORY SHOW -->
 
@@ -211,7 +289,7 @@
 
       <trans-unit id="label.tags">
         <source>label.tags</source>
-        <target>Tags</target>
+        <target>Tagi</target>
       </trans-unit>
 
       <trans-unit id="message.record_not_found">

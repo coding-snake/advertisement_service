@@ -22,8 +22,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/*
- * Account Controller
+/**
+ * Account Controller.
  */
 #[Route('/acc')]
 class AccController extends AbstractController
@@ -31,8 +31,9 @@ class AccController extends AbstractController
     /**
      * Constructor.
      *
-     * @param UserServiceInterface $userService user service
-     * @param TranslatorInterface  $translator  translator service
+     * @param UserServiceInterface        $userService    user service
+     * @param TranslatorInterface         $translator     translator service
+     * @param UserPasswordHasherInterface $passwordHasher hasher service
      */
     public function __construct(
         private readonly UserServiceInterface $userService,
@@ -41,8 +42,13 @@ class AccController extends AbstractController
     ) {
     }
 
-    /*
-     * Change account
+    /**
+     * Change account.
+     *
+     * @param Request        $request        Http request
+     * @param UserRepository $userRepository User repository
+     *
+     * @return Response HTTP Response
      */
     #[Route('/change', name: 'change_account', methods: 'GET|POST')]
     #[IsGranted('ROLE_USER')]
@@ -63,33 +69,33 @@ class AccController extends AbstractController
         }
 
         $userFormData = new UserFormData();
-        $userFormData->current_email = $user->getEmail();
-        $userFormData->current_password = "example";
+        $userFormData->currentEmail = $user->getEmail();
+        $userFormData->currentPassword = 'example';
         $form = $this->createForm(UserType::class, $userFormData);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($userFormData->current_email !== $user->getEmail() && !$this->isGranted('ROLE_ADMIN')) {
+            if ($userFormData->currentEmail !== $user->getEmail() && !$this->isGranted('ROLE_ADMIN')) {
                 $this->addFlash('warning', $this->translator->trans('message.error_email'));
 
                 return $this->redirectToRoute('change_account');
             }
 
             if ($this->isGranted('ROLE_ADMIN')) {
-                $this->userService->updateEmailPassword($user, $userFormData->new_email, $userFormData->new_password);
+                $this->userService->updateEmailPassword($user, $userFormData->newEmail, $userFormData->newPassword);
 
                 $this->addFlash('success', $this->translator->trans('message.success_change'));
 
                 return $this->redirectToRoute('change_account');
             } else {
-                if (!$this->passwordHasher->isPasswordValid($user, $userFormData->current_password)) {
+                if (!$this->passwordHasher->isPasswordValid($user, $userFormData->currentPassword)) {
                     $this->addFlash('warning', $this->translator->trans('message.error_password'));
 
                     return $this->redirectToRoute('change_account');
                 }
 
-                $this->userService->updateEmailPassword($user, $userFormData->new_email, $userFormData->new_password);
+                $this->userService->updateEmailPassword($user, $userFormData->newEmail, $userFormData->newPassword);
 
                 $this->addFlash('success', $this->translator->trans('message.success_change'));
 
@@ -102,8 +108,13 @@ class AccController extends AbstractController
         ]);
     }
 
-    /*
-     * Register account
+    /**
+     * Register account.
+     *
+     * @param Request                $request       HTTP Request
+     * @param EntityManagerInterface $entityManager Entity manager
+     *
+     * @return Response HTTP response
      */
     #[Route('/register', name: 'register_acc', methods: 'GET|POST')]
     public function registerAccount(Request $request, EntityManagerInterface $entityManager): Response
@@ -132,8 +143,12 @@ class AccController extends AbstractController
         ]);
     }
 
-    /*
-     * List of accounts
+    /**
+     * List of accounts.
+     *
+     * @param MapQueryParameter $page number of pages
+     *
+     * @return Response respomse
      */
     #[Route('/list', name: 'acc_list', methods: 'GET|POST')]
     #[IsGranted('ROLE_ADMIN')]

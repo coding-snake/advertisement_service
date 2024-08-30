@@ -21,10 +21,17 @@
                         <a href="{{ url('app_logout') }}">
                             {{ 'action_logout'|trans }}
                         </a>&nbsp;&nbsp;&nbsp;
+                        <a href="{{ url('change_account') }}">
+                            {{ 'change_account'|trans }}
+                        </a>&nbsp;&nbsp;&nbsp;
                     {% else %}
                         <a href="{{ url('app_login') }}">
                             {{ 'action_login'|trans }}
                         </a>&nbsp;&nbsp;&nbsp;
+                        <a href="{{ url('register_acc') }}">
+                            {{ 'register_acc'|trans }}
+                        </a>&nbsp;&nbsp;&nbsp;
+
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('task_index') }}">{{ 'title.task_list_admin'|trans }}</a>&nbsp;&nbsp;&nbsp;
@@ -33,6 +40,9 @@
                         <a href="{{ url('task_index_acc') }}">{{ 'title.task_list'|trans }}</a>&nbsp;&nbsp;&nbsp;
                         <a href="{{ url('category_index') }}">{{ 'title.categories_title'|trans }}</a>&nbsp;&nbsp;&nbsp;
                         <a href="{{ url('tag_index') }}">{{ 'title.tags_title'|trans }}</a>&nbsp;&nbsp;&nbsp;
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ url('acc_list') }}">{{ 'acc_list'|trans }}</a>&nbsp;&nbsp;&nbsp;
+                    {% endif %}
                 </div>
 
 

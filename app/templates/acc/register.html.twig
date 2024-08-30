@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.user_register'|trans }}
+    {{ 'title.register'|trans }}
 {% endblock %}
 
 {% block body %}
     {% include 'default/_form.html.twig' with {
-        page_title: 'title.task_create'|trans,
+        page_title: 'title.register'|trans,
         addit: '',
         form: form,
         submit_label: 'action.save'|trans,

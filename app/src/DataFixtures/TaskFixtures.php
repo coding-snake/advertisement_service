@@ -11,6 +11,7 @@ use App\Entity\Tag;
 use App\Entity\Task;
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 
 /**
@@ -34,23 +35,37 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
         $this->createMany(100, 'tasks', function (int $i) {
             $task = new Task();
             $task->setTitle($this->faker->sentence);
-            $task->setCreatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
-            $task->setUpdatedAt(\DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
+            $content = $this->faker->paragraph;
+            $task->setContent(substr($content, 0, 255));
+            $task->setCreatedAt(\DateTimeImmutable::createFromMutable(
+                $this->faker->dateTimeBetween('-100 days', '-1 days')
+            ));
+            $task->setUpdatedAt(\DateTimeImmutable::createFromMutable(
+                $this->faker->dateTimeBetween('-100 days', '-1 days')
+            ));
+
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $task->setCategory($category);
+
             /** @var array<array-key, Tag> $tags */
             $tags = $this->getRandomReferences('tags', $this->faker->numberBetween(0, 5));
             foreach ($tags as $tag) {
-                $task->setTag($tag);
+                $task->addTag($tag); // Use addTag method to add tags
             }
 
             /** @var User $author */
             $author = $this->getRandomReference('users');
             $task->setAuthor($author);
 
+            $isAccepted = $this->faker->boolean();
+            if (true === $isAccepted) {
+                $task->setIsAccepted(true);
+            }
+
             return $task;
         });
+
         $this->manager->flush();
     }
 

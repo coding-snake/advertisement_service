@@ -30,23 +30,23 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('current_email', EmailType::class, [
+        $builder->add('currentEmail', EmailType::class, [
             'label' => 'current.email',
             'required' => true,
             'attr' => ['max_length' => 255],
         ]);
-        $builder->add('new_email', EmailType::class, [
+        $builder->add('newEmail', EmailType::class, [
             'label' => 'new.email',
             'required' => true,
             'attr' => ['max_length' => 255],
         ]);
 
-        $builder->add('current_password', PasswordType::class, [
+        $builder->add('currentPassword', PasswordType::class, [
             'label' => 'current.password',
             'required' => true,
             'attr' => ['max_length' => 255],
         ]);
-        $builder->add('new_password', PasswordType::class, [
+        $builder->add('newPassword', PasswordType::class, [
             'label' => 'new.password',
             'required' => true,
             'attr' => ['max_length' => 255],

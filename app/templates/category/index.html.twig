@@ -29,8 +29,10 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'category.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'category.title') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
+                {% if is_granted('ROLE_USER') %}
+                    <th>{{ 'label.actions'|trans }}</th>
+                    <th>{{ 'label.actions'|trans }}</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -50,6 +52,7 @@
                         </a>
 
                     </td>
+                    {% if is_granted('ROLE_USER') %}
                     <td>
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
@@ -60,6 +63,7 @@
                             {{ 'action.delete'|trans }}
                         </a>
                     </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

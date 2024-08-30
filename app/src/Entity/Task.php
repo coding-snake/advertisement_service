@@ -96,6 +96,9 @@ class Task
     #[ORM\JoinTable(name: 'tasks_tags')]
     private Collection $tags;
 
+    /**
+     * Construct method
+     */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -219,11 +222,19 @@ class Task
         return $this;
     }
 
+    /**
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * @param User|null $author
+     *
+     * @return $this
+     */
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
@@ -231,11 +242,19 @@ class Task
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getIsAccepted(): ?bool
     {
         return $this->isAccepted;
     }
 
+    /**
+     * @param bool $isAccepted
+     *
+     * @return $this
+     */
     public function setIsAccepted(bool $isAccepted): static
     {
         $this->isAccepted = $isAccepted;

@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -29,8 +30,10 @@ class TagController extends AbstractController
      * @param TagServiceInterface $tagService task service
      * @param TranslatorInterface $translator translator service
      */
-    public function __construct(private readonly TagServiceInterface $tagService, private readonly TranslatorInterface $translator)
-    {
+    public function __construct(
+        private readonly TagServiceInterface $tagService,
+        private readonly TranslatorInterface $translator
+    ) {
     }
 
     /**
@@ -109,6 +112,7 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit', name: 'tag_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Tag $tag): Response
     {
@@ -150,6 +154,7 @@ class TagController extends AbstractController
      *
      * @return Response HTTP response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Tag $tag): Response
     {
@@ -182,8 +187,8 @@ class TagController extends AbstractController
     /**
      * Show action.
      *
-     * @param Tag $tag Tag
-     * @param int      $page     starting page number
+     * @param Tag $tag  Tag
+     * @param int $page starting page number
      *
      * @return Response HTTP response
      */
