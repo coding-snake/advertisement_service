@@ -48,9 +48,13 @@ class TaskController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/task', name: 'task_index', methods: 'GET')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_USER')]
     public function index(#[MapQueryParameter] int $page = 1): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('task_index_acc');
+        }
+
         $pagination = $this->taskService->getPaginatedList($page);
 
         return $this->render('task/index.html.twig', ['pagination' => $pagination]);
