@@ -70,7 +70,11 @@ class AccController extends AbstractController
 
         $userFormData = new UserFormData();
         $userFormData->currentEmail = $user->getEmail();
-        $userFormData->currentPassword = 'example';
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $userFormData->currentPassword = 'example';
+        }
+
         $form = $this->createForm(UserType::class, $userFormData);
 
         $form->handleRequest($request);

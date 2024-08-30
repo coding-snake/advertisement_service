@@ -9,6 +9,44 @@
         <target></target>
     </trans-unit>
     -->
+
+    <trans-unit id="title.user_list_admin">
+        <source>title.user_list_admin</source>
+        <target>Lista użytkowników (admin)</target>
+    </trans-unit>
+
+    <trans-unit id="message.success_change">
+        <source>message.success_change</source>
+        <target>POMYŚLNIE ZMIENIONO DANE UŻYTKOWNIKA</target>
+    </trans-unit>
+
+    <trans-unit id="title.user_change">
+        <source>title.user_change</source>
+        <target>Zmień dane użytkownika</target>
+    </trans-unit>
+
+    <trans-unit id="current.email">
+        <source>current.email</source>
+        <target>Obecny e-mail: </target>
+    </trans-unit>
+    <trans-unit id="current.password">
+        <source>current.password</source>
+        <target>Obecne hasło (wpisz "example" jeśli jesteś adminem i zmieniasz dane innych użytkowników): </target>
+    </trans-unit>
+    <trans-unit id="new.email">
+        <source>new.email</source>
+        <target>Nowy email: </target>
+    </trans-unit>
+    <trans-unit id="new.password">
+        <source>new.password</source>
+        <target>Nowe hasło: </target>
+    </trans-unit>
+
+    <trans-unit id="message.success_register">
+        <source>message.success_register</source>
+        <target>POMYŚLNIE ZAREJESTROWANO UŻYTKOWNIKA</target>
+    </trans-unit>
+
     <trans-unit id="title.tag_create">
         <source>title.tag_create</source>
         <target>Stwórz nowy tag</target>
