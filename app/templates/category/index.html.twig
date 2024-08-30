@@ -24,10 +24,10 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'category.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'category.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'category.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'category.title') }}</th>
+                <th>{{ 'label.id'|trans }}</th>
+                <th>{{ 'label.created_at'|trans }}</th>
+                <th>{{ 'label.updated_at'|trans }}</th>
+                <th>{{ 'label.title'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
                 {% if is_granted('ROLE_USER') %}
                     <th>{{ 'label.actions'|trans }}</th>
