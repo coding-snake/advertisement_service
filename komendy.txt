@@ -18,3 +18,6 @@ vendor/bin/phpcs --standard=Symfony src/Service --ignore=Kernel.php
 vendor/bin/phpcbf --standard=Symfony src/Service --ignore=Kernel.php
 
 ---
+ODPOWIEDZ
+1. Naprawiłem link powrotny do listy w formularzu zmiany hasła
+2. Ciężko mi było wywołąć błąd pustego formularza, ale z kontekstu wynikało to przez wywołanie metody updateEmailPassword() ze złym typem parametrów, dodałem prosty system flag i podmieniania wartości tych parametrów, żeby nie były null tylko string. Następnie metoda udpowiednio zmienia dane użytkownika, pomijając

@@ -22,7 +22,7 @@ interface UserServiceInterface
      * @param string        $newEmail    New Email
      * @param string        $newPassword New Password
      */
-    public function updateEmailPassword(User $user, string $newEmail, string $newPassword): void;
+    public function updateEmailPassword(User $user, string $newEmail, string $newPassword, int $flag): void;
 
     /**
      * Get paginated list.

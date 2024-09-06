@@ -9,6 +9,35 @@
         <target></target>
     </trans-unit>
     -->
+    <trans-unit id="message.error_email">
+        <source>message.error_email</source>
+        <target>Nieprawidłowy email</target>
+    </trans-unit>
+    <trans-unit id="message.error_password">
+        <source>message.error_password </source>
+        <target>Nieprawidłowe hasło</target>
+    </trans-unit>
+    <trans-unit id="action.tag_posts">
+        <source>action.tag_posts</source>
+        <target>taguj posty</target>
+    </trans-unit>
+
+    <trans-unit id="message.error_user_not_found">
+        <source>message.error_user_not_found</source>
+        <target>Użytkownika nie znaleziono</target>
+    </trans-unit>
+    <trans-unit id="message.success_but_email">
+        <source>message.success_but_email</source>
+        <target>Hasło zostało zmienione, email nie</target>
+    </trans-unit>
+    <trans-unit id="message.success_but_password">
+        <source>message.success_but_password</source>
+        <target>Email został zmieniony, hasło nie</target>
+    </trans-unit>
+    <trans-unit id="message.not_changed_password_email">
+        <source>message.not_changed_password_email</source>
+        <target>Hasło i Email nie zostały zmienione</target>
+    </trans-unit>
 
     <trans-unit id="title.user_list_admin">
         <source>title.user_list_admin</source>
