@@ -104,12 +104,12 @@ class TaskVoter extends Voter
         if ($task->getAuthor() === $user) {
             if ('anon@example.com' === $user->getEmail()) {
                 return false;
-            } else {
-                return true;
             }
-        } else {
-            return false;
+
+            return true;
         }
+
+        return false;
     }
 
     /**
@@ -142,12 +142,12 @@ class TaskVoter extends Voter
         if ($task->getAuthor() === $user) {
             if ('anon@example.com' === $user->getEmail()) {
                 return false;
-            } else {
-                return true;
             }
-        } else {
-            return false;
+
+            return true;
         }
+
+        return false;
     }
 
     /**

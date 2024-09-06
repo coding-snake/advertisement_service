@@ -35,11 +35,8 @@ class AccController extends AbstractController
      * @param TranslatorInterface         $translator     translator service
      * @param UserPasswordHasherInterface $passwordHasher hasher service
      */
-    public function __construct(
-        private readonly UserServiceInterface $userService,
-        private readonly TranslatorInterface $translator,
-        private readonly UserPasswordHasherInterface $passwordHasher
-    ) {
+    public function __construct(private readonly UserServiceInterface $userService, private readonly TranslatorInterface $translator, private readonly UserPasswordHasherInterface $passwordHasher)
+    {
     }
 
     /**

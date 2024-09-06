@@ -18,27 +18,27 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 class UserService implements UserServiceInterface
 {
-    /**
-     * Items per page.
-     *
-     * Use constants to define configuration options that rarely change instead
-     * of specifying them in app/config/config.yml.
-     * See https://symfony.com/doc/current/best_practices.html#configuration
-     *
-     * @constant int
-     */
     private const PAGINATOR_ITEMS_PER_PAGE = 10;
 
-    public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly UserPasswordHasherInterface $passwordHasher,
-        private readonly PaginatorInterface $paginator,
-        private readonly UserRepository $userRepository
-    ) {
+    /**
+     * A construct function
+     *
+     * @param EntityManagerInterface      $entityManager
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @param PaginatorInterface          $paginator
+     * @param UserRepository              $userRepository
+     */
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly UserPasswordHasherInterface $passwordHasher, private readonly PaginatorInterface $paginator, private readonly UserRepository $userRepository)
+    {
     }
 
     /**
      * Updated email and password.
+     *
+     * @param User   $user
+     * @param string $newEmail
+     * @param string $newPassword
+     * @param int    $flag
      */
     public function updateEmailPassword(User $user, string $newEmail, string $newPassword, int $flag): void
     {
@@ -65,7 +65,7 @@ class UserService implements UserServiceInterface
         return $this->paginator->paginate(
             $this->userRepository->queryAll(),
             $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
+            self::PAGINATOR_ITEMS_PER_PAGE,
         );
     }
 }

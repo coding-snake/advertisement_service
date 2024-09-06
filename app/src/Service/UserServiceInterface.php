@@ -21,6 +21,7 @@ interface UserServiceInterface
      * @param UserInterface $user        User
      * @param string        $newEmail    New Email
      * @param string        $newPassword New Password
+     * @param int           $flag        Flag
      */
     public function updateEmailPassword(User $user, string $newEmail, string $newPassword, int $flag): void;
 

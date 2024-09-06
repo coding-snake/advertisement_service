@@ -39,11 +39,8 @@ class TagService implements TagServiceInterface
      * @param TaskRepository     $taskRepository Task repository
      * @param PaginatorInterface $paginator      Paginator interface
      */
-    public function __construct(
-        private readonly TagRepository $tagRepository,
-        private readonly TaskRepository $taskRepository,
-        private readonly PaginatorInterface $paginator
-    ) {
+    public function __construct(private readonly TagRepository $tagRepository, private readonly TaskRepository $taskRepository, private readonly PaginatorInterface $paginator)
+    {
     }
 
     /**
@@ -58,7 +55,7 @@ class TagService implements TagServiceInterface
         return $this->paginator->paginate(
             $this->tagRepository->queryAll(),
             $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
+            self::PAGINATOR_ITEMS_PER_PAGE,
         );
     }
 
@@ -101,7 +98,7 @@ class TagService implements TagServiceInterface
             $result = $this->taskRepository->countByTag($tag);
 
             return !($result > 0);
-        } catch (NoResultException | NonUniqueResultException) {
+        } catch (NoResultException|NonUniqueResultException) {
             return false;
         }
     }
@@ -119,7 +116,7 @@ class TagService implements TagServiceInterface
         return $this->paginator->paginate(
             $this->taskRepository->queryPartTags($tag),
             $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
+            self::PAGINATOR_ITEMS_PER_PAGE,
         );
     }
 }

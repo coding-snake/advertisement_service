@@ -30,10 +30,8 @@ class TagController extends AbstractController
      * @param TagServiceInterface $tagService task service
      * @param TranslatorInterface $translator translator service
      */
-    public function __construct(
-        private readonly TagServiceInterface $tagService,
-        private readonly TranslatorInterface $translator
-    ) {
+    public function __construct(private readonly TagServiceInterface $tagService, private readonly TranslatorInterface $translator)
+    {
     }
 
     /**
@@ -92,7 +90,7 @@ class TagController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.created_successfully')
+                $this->translator->trans('message.created_successfully'),
             );
 
             return $this->redirectToRoute('tag_index');
@@ -122,7 +120,7 @@ class TagController extends AbstractController
             [
                 'method' => 'PUT',
                 'action' => $this->generateUrl('tag_edit', ['id' => $tag->getId()]),
-            ]
+            ],
         );
         $form->handleRequest($request);
 
@@ -131,7 +129,7 @@ class TagController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.created_successfully')
+                $this->translator->trans('message.created_successfully'),
             );
 
             return $this->redirectToRoute('tag_index');
@@ -169,7 +167,7 @@ class TagController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.deleted_successfully')
+                $this->translator->trans('message.deleted_successfully'),
             );
 
             return $this->redirectToRoute('tag_index');

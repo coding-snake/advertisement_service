@@ -11,113 +11,113 @@
     -->
     <trans-unit id="message.error_email">
         <source>message.error_email</source>
-        <target>Invalid email</target>
+        <target>Nieprawidłowy email</target>
     </trans-unit>
     <trans-unit id="message.error_password">
         <source>message.error_password</source>
-        <target>Invalid password</target>
+        <target>Nieprawidłowe hasło</target>
     </trans-unit>
     <trans-unit id="action.tag_posts">
         <source>action.tag_posts</source>
-        <target>tag posts</target>
+        <target>taguj posty</target>
     </trans-unit>
 
     <trans-unit id="message.error_user_not_found">
         <source>message.error_user_not_found</source>
-        <target>User not found</target>
+        <target>Użytkownika nie znaleziono</target>
     </trans-unit>
     <trans-unit id="message.success_but_email">
         <source>message.success_but_email</source>
-        <target>Password has been changed, email not</target>
+        <target>Hasło zostało zmienione, email nie</target>
     </trans-unit>
     <trans-unit id="message.success_but_password">
         <source>message.success_but_password</source>
-        <target>Email has been changed, password not</target>
+        <target>Email został zmieniony, hasło nie</target>
     </trans-unit>
     <trans-unit id="message.not_changed_password_email">
         <source>message.not_changed_password_email</source>
-        <target>Password and Email have not been changed</target>
+        <target>Hasło i Email nie zostały zmienione</target>
     </trans-unit>
 
     <trans-unit id="title.user_list_admin">
         <source>title.user_list_admin</source>
-        <target>User list (admin)</target>
+        <target>Lista użytkowników (admin)</target>
     </trans-unit>
 
     <trans-unit id="message.success_change">
         <source>message.success_change</source>
-        <target>USER DATA SUCCESSFULLY CHANGED</target>
+        <target>POMYŚLNIE ZMIENIONO DANE UŻYTKOWNIKA</target>
     </trans-unit>
 
     <trans-unit id="title.user_change">
         <source>title.user_change</source>
-        <target>Change user details</target>
+        <target>Zmień dane użytkownika</target>
     </trans-unit>
 
     <trans-unit id="current.email">
         <source>current.email</source>
-        <target>Current e-mail: </target>
+        <target>Obecny e-mail: </target>
     </trans-unit>
     <trans-unit id="current.password">
         <source>current.password</source>
-        <target>Currrent password (type "example" if you are admin changing account details of a user): </target>
+        <target>Obecne hasło (wpisz "example" jeśli jesteś adminem i zmieniasz dane innych użytkowników): </target>
     </trans-unit>
     <trans-unit id="new.email">
         <source>new.email</source>
-        <target>New email: </target>
+        <target>Nowy email: </target>
     </trans-unit>
     <trans-unit id="new.password">
         <source>new.password</source>
-        <target>New password: </target>
+        <target>Nowe hasło: </target>
     </trans-unit>
 
     <trans-unit id="message.success_register">
         <source>message.success_register</source>
-        <target>SUCCESFULLY REGISTERED USER</target>
+        <target>POMYŚLNIE ZAREJESTROWANO UŻYTKOWNIKA</target>
     </trans-unit>
 
     <trans-unit id="title.tag_create">
         <source>title.tag_create</source>
-        <target>Create new tag</target>
+        <target>Stwórz nowy tag</target>
     </trans-unit>
 
     <trans-unit id="title.tag_list">
         <source>title.tag_list</source>
-        <target>List of posts for a tag </target>
+        <target>Lista postów dla tagu </target>
     </trans-unit>
 
     <trans-unit id="title.tag_edit">
         <source>title.tag_edit</source>
-        <target>Update tag</target>
+        <target>Edytuj tag</target>
     </trans-unit>
 
     <trans-unit id="title.tag_details">
         <source>title.tag_details</source>
-        <target>Tag details</target>
+        <target>Detale tagu</target>
     </trans-unit>
 
     <trans-unit id="title.category_details">
         <source>title.category_details</source>
-        <target>Delete category</target>
+        <target>Detale kategorii</target>
     </trans-unit>
 
     <trans-unit id="action.read">
         <source>action.read</source>
-        <target>Read (R)</target>
+        <target>Przeczytaj (R)</target>
     </trans-unit>
     <trans-unit id="title.register">
         <source>title.register</source>
-        <target>Register</target>
+        <target>Zarejestruj się</target>
     </trans-unit>
 
     <trans-unit id="label.log_in">
         <source>label.log_in</source>
-        <target>Login</target>
+        <target>zaloguj się</target>
     </trans-unit>
 
     <trans-unit id="label.password">
         <source>label.password</source>
-        <target>Password: </target>
+        <target>Hasło: </target>
     </trans-unit>
 
     <trans-unit id="label.email">
@@ -127,81 +127,81 @@
 
     <trans-unit id="label.logout">
         <source>label.logout</source>
-        <target>Logout :(</target>
+        <target>Wyloguj się :(</target>
     </trans-unit>
 
     <trans-unit id="you_are_logged_in_as">
         <source>you_are_logged_in_as</source>
-        <target>You are registered as: </target>
+        <target>Jesteś zarejestrowan(a/y) jako: </target>
     </trans-unit>
 
     <trans-unit id="label.sign_in">
         <source>label.sign_in</source>
-        <target>Login</target>
+        <target>Zaloguj się</target>
     </trans-unit>
 
     <trans-unit id="register_acc">
         <source>register_acc</source>
-        <target>Register account !</target>
+        <target>Zarejestruj się !</target>
     </trans-unit>
 
     <trans-unit id="acc_list">
         <source>acc_list</source>
-        <target>List of users (admin)</target>
+        <target>lista kont użytkowników (admin)</target>
     </trans-unit>
 
     <trans-unit id="change_account">
         <source>change_account</source>
-        <target>Change account data</target>
+        <target>Zmień dane konta</target>
     </trans-unit>
 
     <trans-unit id="action.accept">
         <source>action.accept</source>
-        <target>accept</target>
+        <target>zaakceptuj</target>
     </trans-unit>
 
     <trans-unit id="title.task_list_admin">
         <source>title.task_list_admin</source>
-        <target>list of posts (admin)</target>
+        <target>lista postów (admin)</target>
     </trans-unit>
 
     <trans-unit id="label.author">
         <source>label.author</source>
-        <target>Author</target>
+        <target>Autor</target>
     </trans-unit>
 
     <trans-unit id="label.isAccepted">
         <source>label.isAccepted</source>
-        <target>accepted ?</target>
+        <target>Zaakceptowano?</target>
     </trans-unit>
 
     <trans-unit id="title.tags_title">
         <source>title.tags_title</source>
-        <target>List of tags</target>
+        <target>lista tagów</target>
     </trans-unit>
 
     <trans-unit id="title.tag_delete">
         <source>title.tag_delete</source>
-        <target>Delete tag: </target>
+        <target>Usuń tag: </target>
     </trans-unit>
 
     <trans-unit id="action_logout">
         <source>action_logout</source>
-        <target>Logout</target>
+        <target>Wyloguj się</target>
     </trans-unit>
     <trans-unit id="action_login">
         <source>action_login</source>
-        <target>Login</target>
+        <target>Zaloguj się</target>
     </trans-unit>
 
     <!-- OGLOSZENIA INDEX -->
       <trans-unit id="title.task_list">
         <source>title.task_list</source>
-        <target>list of posts</target>
+        <target>lista postów</target>
       </trans-unit>
       <trans-unit id="action.create">
         <source>action.create</source>
-        <target>Create (C)</target>
+        <target>Stwórz (C)</target>
       </trans-unit>
       <trans-unit id="label.id">
         <source>label.id</source>
@@ -209,32 +209,32 @@
       </trans-unit>
         <trans-unit id="label.created_at">
         <source>label.created_at</source>
-        <target>Date of creation</target>
+        <target>Data utworzenia</target>
       </trans-unit>
       <trans-unit id="label.updated_at">
         <source>label.updated_at</source>
-        <target>Date of last update</target>
+        <target>Data ostatniej edycji</target>
       </trans-unit>
       <trans-unit id="label.title">
         <source>label.title</source>
-        <target>Title</target>
+        <target>Tytuł</target>
       </trans-unit>
       <trans-unit id="label.category">
         <source>label.category</source>
-        <target>Category</target>
+        <target>Kategoria</target>
       </trans-unit>
       <trans-unit id="label.actions">
         <source>label.actions</source>
-        <target>Actions</target>
+        <target>Akcje</target>
       </trans-unit>
       <trans-unit id="action.show">
         <source>action.show</source>
-        <target>Read (R)</target>
+        <target>Przeczytaj (R)</target>
       </trans-unit>
 
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
-        <target>List is empty</target>
+        <target>Lista jest pusta</target>
       </trans-unit>
 
       <!-- OGLOSZENIA SHOW -->
@@ -244,109 +244,109 @@
       </trans-unit>
       <trans-unit id="label.content">
         <source>label.content</source>
-        <target>Content</target>
+        <target>Treść</target>
       </trans-unit>
       <trans-unit id="action.back_to_list">
         <source>action.back_to_list</source>
-        <target>Back to list</target>
+        <target>Powrót do listy</target>
       </trans-unit>
 
 
       <trans-unit id="action.update">
         <source>action.update</source>
-        <target>Update (U)</target>
+        <target>Edytuj (U)</target>
       </trans-unit>
       <trans-unit id="action.delete">
         <source>action.delete</source>
-        <target>Delete (D)</target>
+        <target>Usuń (D)</target>
       </trans-unit>
 
       <!-- CATEGORY INDEX -->
       <trans-unit id="title.categories_title">
         <source>title.categories_title</source>
-        <target>category list</target>
+        <target>lista kategorii</target>
       </trans-unit>
       <!-- CATEGORY SHOW -->
 
       <trans-unit id="title.category_list">
         <source>title.category_list</source>
-        <target>displaying a list of posts for a given category : </target>
+        <target>wyświetlanie listy ogłoszeń dla danej kategorii : </target>
       </trans-unit>
 
       <!-- CREATE CATEGORY -->
       <trans-unit id="title.category_create">
         <source>title.category_create</source>
-        <target>Create category</target>
+        <target>Utwórz kategorię</target>
       </trans-unit>
 
       <trans-unit id="action.save">
         <source>action.save</source>
-        <target>Save</target>
+        <target>Zapisz</target>
       </trans-unit>
 
       <!-- CREATE TASK -->
       <trans-unit id="title.task_create">
         <source>title.task_create</source>
-        <target>Create post</target>
+        <target>Utwórz post</target>
       </trans-unit>
 
       <!-- EDIT CATEGORY -->
       <trans-unit id="action.edit">
         <source>action.edit</source>
-        <target>Update (U) </target>
+        <target>Edytuj (U) </target>
       </trans-unit>
 
       <trans-unit id="title.category_edit">
         <source>title.category_edit</source>
-        <target>Update category </target>
+        <target>Edytuj kategorię </target>
       </trans-unit>
 
       <trans-unit id="message.created_successfully">
         <source>message.created_successfully</source>
-        <target>SUCCESFULLY CREATED</target>
+        <target>SUKCES W TWORZENIU</target>
       </trans-unit>
 
       <trans-unit id="message.deleted_successfully">
         <source>message.deleted_successfully</source>
-        <target>SUCCESFULLY DELETED</target>
+        <target>SUKCES W USUNIĘCIU</target>
       </trans-unit>
 
       <!-- EDIT TASK -->
       <trans-unit id="title.task_edit">
         <source>title.task_edit</source>
-        <target>Update post</target>
+        <target>Edytuj post</target>
       </trans-unit>
 
       <trans-unit id="title.category_delete">
         <source>title.category_delete</source>
-        <target>Delete category</target>
+        <target>Usuń kategorię</target>
       </trans-unit>
 
       <trans-unit id="title.task_delete">
         <source>title.task_delete</source>
-        <target>Delete post</target>
+        <target>Usuń post</target>
       </trans-unit>
 
       <trans-unit id="title.tasks">
         <source>title.tasks</source>
-        <target>TASK LIST</target>
+        <target>LISTA POSTÓW</target>
       </trans-unit>
 
       <trans-unit id="message.form_error">
         <source>message.form_error</source>
-        <target>ERROR IN FORM</target>
+        <target>BŁĄD</target>
       </trans-unit>
 
       <trans-unit id="title.categories">
         <source>title.categories</source>
-        <target>LIST OF CATEGORIES</target>
+        <target>LISTA KATEGORII</target>
       </trans-unit>
 
 
 
       <trans-unit id="message.category_contains_tasks">
         <source>message.category_contains_tasks</source>
-        <target>THIS CATEGORY IS NOT EMPTY</target>
+        <target>TA KATEGORIA NIE JEST PUSTA</target>
       </trans-unit>
 
       <!-- GOOD -->
@@ -356,24 +356,24 @@
 
       <trans-unit id="label.tags">
         <source>label.tags</source>
-        <target>Tags</target>
+        <target>Tagi</target>
       </trans-unit>
 
       <trans-unit id="message.record_not_found">
         <source>message.record_not_found</source>
-        <target>Record not found.</target>
+        <target>Ogłoszenia nie znaleziono</target>
       </trans-unit>
       <trans-unit id="title.record_list">
         <source>title.record_list</source>
-        <target>Records list</target>
+        <target>Lista ogłoszeń</target>
       </trans-unit>
       <trans-unit id="title.record_view">
         <source>title.record_view</source>
-        <target>Record view #%id%</target>
+        <target>Zobacz post #%id%</target>
       </trans-unit>
       <trans-unit id="action.view">
         <source>action.view</source>
-        <target>Go to the post</target>
+        <target>Wejdź (R)</target>
       </trans-unit>
 
 
@@ -381,7 +381,7 @@
 
       <trans-unit id="category.category_elements">
         <source>category.category_elements</source>
-        <target>Elements in category</target>
+        <target>Elementy w kategorii</target>
       </trans-unit>
     </body>
   </file>

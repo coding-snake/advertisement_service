@@ -39,11 +39,8 @@ class CategoryService implements CategoryServiceInterface
      * @param TaskRepository     $taskRepository     Category repository
      * @param PaginatorInterface $paginator          Paginator interface
      */
-    public function __construct(
-        private readonly CategoryRepository $categoryRepository,
-        private readonly TaskRepository $taskRepository,
-        private readonly PaginatorInterface $paginator
-    ) {
+    public function __construct(private readonly CategoryRepository $categoryRepository, private readonly TaskRepository $taskRepository, private readonly PaginatorInterface $paginator)
+    {
     }
 
     /**
@@ -58,7 +55,7 @@ class CategoryService implements CategoryServiceInterface
         return $this->paginator->paginate(
             $this->categoryRepository->queryAll(),
             $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
+            self::PAGINATOR_ITEMS_PER_PAGE,
         );
     }
 

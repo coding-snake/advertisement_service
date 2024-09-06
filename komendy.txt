@@ -13,11 +13,15 @@ Narzędzia do poprawy kodu:
 
 vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR1,@PSR2,@PSR12
 
-vendor/bin/phpcs --standard=Symfony src/Service --ignore=Kernel.php
+vendor/bin/phpcs --standard=Symfony src/ --ignore=Kernel.php
 
-vendor/bin/phpcbf --standard=Symfony src/Service --ignore=Kernel.php
+vendor/bin/phpcbf --standard=Symfony src/ --ignore=Kernel.php
 
 ---
 ODPOWIEDZ
 1. Naprawiłem link powrotny do listy w formularzu zmiany hasła
-2. Ciężko mi było wywołąć błąd pustego formularza, ale z kontekstu wynikało to przez wywołanie metody updateEmailPassword() ze złym typem parametrów, dodałem prosty system flag i podmieniania wartości tych parametrów, żeby nie były null tylko string. Następnie metoda udpowiednio zmienia dane użytkownika, pomijając
+2. Nie udało mi się wywołąć błędu z pustym emailem w formularzu, ale z kontekstu wiem, że zamiast stringa jest null, dodałem flagi (int), żeby w odpowiednich sytuacjach podmieniały wartości parametrów na śmieciowe, a następnie niewłaściwy email lub hasło są pominięte w zapisie (userService.php) z odpowiednią wiadomością
+3. co do błędów z phpcs to je naprawiłem, okazało się, że przez złą komendę przeszukiwałem tylko jeden folder.
+Drobna uwaga po uruchomieniu `vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR1,@PSR2,@PSR12` php-cs-fixer "naprawia" moje pliki usuwając niektóre elementy komentarzy dokumentacyjnych, co sprawia, że `vendor/bin/phpcs --standard=Symfony src/ --ignore=Kernel.php` rzuca się o to, że błędy są z brakującymi @param itp. Postanowiłem, że będę słuchał się phpcs i nie włączał php-cs-fixer
+4. tłumaczenia dokończone dla pl i en
+5. Optymalizacja list nie do końca mi wychodziła, ale udało mi się zoptymalizować zapytania za pomocą metody partial

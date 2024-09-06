@@ -36,10 +36,8 @@ class TaskService implements TaskServiceInterface
      * @param TaskRepository     $taskRepository Task repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(
-        private readonly TaskRepository $taskRepository,
-        private readonly PaginatorInterface $paginator
-    ) {
+    public function __construct(private readonly TaskRepository $taskRepository, private readonly PaginatorInterface $paginator)
+    {
     }
 
     /**
@@ -54,7 +52,7 @@ class TaskService implements TaskServiceInterface
         return $this->paginator->paginate(
             $this->taskRepository->queryAll(),
             $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
+            self::PAGINATOR_ITEMS_PER_PAGE,
         );
     }
 
@@ -71,7 +69,7 @@ class TaskService implements TaskServiceInterface
         return $this->paginator->paginate(
             $this->taskRepository->queryPart($category),
             $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
+            self::PAGINATOR_ITEMS_PER_PAGE,
         );
     }
 
@@ -87,7 +85,7 @@ class TaskService implements TaskServiceInterface
         return $this->paginator->paginate(
             $this->taskRepository->queryAcc(),
             $page,
-            self::PAGINATOR_ITEMS_PER_PAGE
+            self::PAGINATOR_ITEMS_PER_PAGE,
         );
     }
 

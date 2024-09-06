@@ -20,6 +20,8 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     /**
+     * Construct method
+     *
      * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
@@ -30,8 +32,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      *
-     * @param PasswordAuthenticatedUserInterface $user
-     * @param string                             $newHashedPassword
+     * @param PasswordAuthenticatedUserInterface $user              User
+     * @param string                             $newHashedPassword Password
      *
      * @return void
      */
@@ -49,17 +51,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Query all users.
      *
-     * @return QueryBuilder Query builder
+     * @return QueryBuilder
      */
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('u')
+            ->select('partial u.{id, email}')
             ->orderBy('u.email', 'ASC');
     }
 
-    //    /**
-    //     * @return User[] Returns an array of User objects
-    //     */
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('u')
@@ -71,7 +71,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //            ->getResult()
     //        ;
     //    }
-
     //    public function findOneBySomeField($value): ?User
     //    {
     //        return $this->createQueryBuilder('u')

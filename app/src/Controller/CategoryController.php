@@ -30,10 +30,8 @@ class CategoryController extends AbstractController
      * @param CategoryServiceInterface $categoryService category service
      * @param TranslatorInterface      $translator      translator service
      */
-    public function __construct(
-        private readonly CategoryServiceInterface $categoryService,
-        private readonly TranslatorInterface $translator
-    ) {
+    public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly TranslatorInterface $translator)
+    {
     }
 
     /**
@@ -83,7 +81,7 @@ class CategoryController extends AbstractController
 
         return $this->render(
             'category/create.html.twig',
-            ['Form' => $form->createView()]
+            ['Form' => $form->createView()],
         );
     }
 
@@ -105,7 +103,7 @@ class CategoryController extends AbstractController
             [
                 'method' => 'PUT',
                 'action' => $this->generateUrl('category_edit', ['id' => $category->getId()]),
-            ]
+            ],
         );
         $form->handleRequest($request);
 
@@ -125,7 +123,7 @@ class CategoryController extends AbstractController
             [
                 'form' => $form->createView(),
                 'category' => $category,
-            ]
+            ],
         );
     }
 
@@ -144,7 +142,7 @@ class CategoryController extends AbstractController
         if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
-                $this->translator->trans('message.category_contains_tasks')
+                $this->translator->trans('message.category_contains_tasks'),
             );
 
             return $this->redirectToRoute('category_index');
@@ -161,7 +159,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.deleted_successfully')
+                $this->translator->trans('message.deleted_successfully'),
             );
 
             return $this->redirectToRoute('category_index');

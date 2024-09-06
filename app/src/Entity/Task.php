@@ -62,7 +62,7 @@ class Task
     /**
      * Category.
      */
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
@@ -97,7 +97,7 @@ class Task
     private Collection $tags;
 
     /**
-     * Construct method
+     * Construct method.
      */
     public function __construct()
     {
@@ -223,6 +223,8 @@ class Task
     }
 
     /**
+     * Getter for author
+     *
      * @return User|null
      */
     public function getAuthor(): ?User
@@ -231,6 +233,8 @@ class Task
     }
 
     /**
+     * Setter for author
+     *
      * @param User|null $author
      *
      * @return $this
@@ -243,6 +247,8 @@ class Task
     }
 
     /**
+     * Get for isAccepted
+     *
      * @return bool|null
      */
     public function getIsAccepted(): ?bool
@@ -251,6 +257,8 @@ class Task
     }
 
     /**
+     * Setter for isAccepted
+     *
      * @param bool $isAccepted
      *
      * @return $this

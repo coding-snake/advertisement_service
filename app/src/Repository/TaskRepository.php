@@ -50,15 +50,12 @@ class TaskRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('t')
+            ->select('partial t.{id, createdAt, updatedAt, title, category, isAccepted, author}')
             ->where('t.isAccepted = :accepted')
             ->setParameter('accepted', false)
             ->orderBy('t.updatedAt', 'DESC');
     }
 
-    /**
-     * Code from the section about partial querying doesn't seem to work for me, so I am using
-     * magic code from the internet.
-     */
     /**
      * Query Part records.
      *
@@ -69,6 +66,7 @@ class TaskRepository extends ServiceEntityRepository
     public function queryPart(Category $category): QueryBuilder
     {
         return $this->createQueryBuilder('t')
+            ->select('partial t.{id, createdAt, updatedAt, title, category}')
             ->where('t.category = :category')
             ->setParameter('category', $category)
             ->orderBy('t.updatedAt', 'DESC');
@@ -84,6 +82,7 @@ class TaskRepository extends ServiceEntityRepository
     public function queryPartTags(Tag $tag): QueryBuilder
     {
         return $this->createQueryBuilder('t')
+            ->select('partial t.{id, createdAt, updatedAt, title}')
             ->innerJoin('t.tags', 'tgs')
             ->where('tgs = :tag')
             ->setParameter('tag', $tag)
@@ -98,6 +97,7 @@ class TaskRepository extends ServiceEntityRepository
     public function queryAcc(): QueryBuilder
     {
         return $this->createQueryBuilder('t')
+            ->select('partial t.{id, createdAt, updatedAt, title, category, isAccepted, author}')
             ->where('t.isAccepted = :accepted')
             ->setParameter('accepted', true)
             ->orderBy('t.updatedAt', 'DESC');
