@@ -11,7 +11,7 @@ yes
 
 Narzędzia do poprawy kodu:
 
-vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR1,@PSR2,@PSR12
+NIE UŻYWAĆ:                     vendor/bin/php-cs-fixer fix src/ --rules=@Symfony,@PSR1,@PSR2,@PSR12
 
 vendor/bin/phpcs --standard=Symfony src/ --ignore=Kernel.php
 

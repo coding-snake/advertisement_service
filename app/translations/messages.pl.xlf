@@ -9,6 +9,15 @@
         <target></target>
     </trans-unit>
     -->
+    <trans-unit id="message.error_empty_email">
+        <source>message.error_empty_email</source>
+        <target>Zapomniał(aś/eś) wypełnić pole email</target>
+    </trans-unit>
+    <trans-unit id="message.error_empty_password">
+        <source>message.error_empty_password</source>
+        <target>Zapomniał(aś/eś) wypełnić pole hasła</target>
+    </trans-unit>
+
     <trans-unit id="message.error_email">
         <source>message.error_email</source>
         <target>Nieprawidłowy email</target>

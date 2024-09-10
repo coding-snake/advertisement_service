@@ -83,62 +83,33 @@ class AccController extends AbstractController
                 return $this->redirectToRoute('change_account');
             }
 
-            if ($this->isGranted('ROLE_ADMIN')) {
-                $flag = 0;
-
-                if (empty($userFormData->newEmail)) {
-                    $userFormData->newEmail = 'example@example.com';
-                    ++$flag;
-                }
-
-                if (empty($userFormData->newPassword)) {
-                    $userFormData->newPassword = 'example';
-                    $flag += 2;
-                }
-                $this->userService->updateEmailPassword($user, $userFormData->newEmail, $userFormData->newPassword, $flag);
-
-                if (0 === $flag) {
-                    $this->addFlash('success', $this->translator->trans('message.success_change'));
-                } elseif (1 === $flag) {
-                    $this->addFlash('warning', $this->translator->trans('message.success_but_email'));
-                } elseif (2 === $flag) {
-                    $this->addFlash('warning', $this->translator->trans('message.success_but_password'));
-                } elseif (3 === $flag) {
-                    $this->addFlash('warning', $this->translator->trans('message.not_changed_password_email'));
-                }
+            if (empty($userFormData->currentEmail) || empty($userFormData->newEmail)) {
+                $this->addFlash('warning', $this->translator->trans('message.error_empty_email'));
 
                 return $this->redirectToRoute('change_account');
+            }
+
+            if (empty($userFormData->currentPassword) || empty($userFormData->newPassword)) {
+                $this->addFlash('warning', $this->translator->trans('message.error_empty_password'));
+
+                return $this->redirectToRoute('change_account');
+            }
+
+            if ($this->isGranted('ROLE_ADMIN')) {
+                $this->userService->updateEmailPassword($user, $userFormData->newEmail, $userFormData->newPassword);
             } else {
                 if (!$this->passwordHasher->isPasswordValid($user, $userFormData->currentPassword)) {
                     $this->addFlash('warning', $this->translator->trans('message.error_password'));
 
                     return $this->redirectToRoute('change_account');
                 }
-                $flag = 0;
 
-                if (empty($userFormData->newEmail)) {
-                    $userFormData->newEmail = 'example@example.com';
-                    ++$flag;
-                }
+                $this->userService->updateEmailPassword($user, $userFormData->newEmail, $userFormData->newPassword);
 
-                if (empty($userFormData->newPassword)) {
-                    $userFormData->newPassword = 'example';
-                    $flag += 2;
-                }
-                $this->userService->updateEmailPassword($user, $userFormData->newEmail, $userFormData->newPassword, $flag);
-
-                if (0 === $flag) {
-                    $this->addFlash('success', $this->translator->trans('message.success_change'));
-                } elseif (1 === $flag) {
-                    $this->addFlash('warning', $this->translator->trans('message.success_but_email'));
-                } elseif (2 === $flag) {
-                    $this->addFlash('warning', $this->translator->trans('message.success_but_password'));
-                } elseif (3 === $flag) {
-                    $this->addFlash('warning', $this->translator->trans('message.not_changed_password_email'));
-                }
-
-                return $this->redirectToRoute('change_account');
+                $this->addFlash('success', $this->translator->trans('message.success_change'));
             }
+
+            return $this->redirectToRoute('change_account');
         }
 
         return $this->render('acc/change_account.html.twig', [

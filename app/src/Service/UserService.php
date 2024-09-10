@@ -38,17 +38,13 @@ class UserService implements UserServiceInterface
      * @param User   $user
      * @param string $newEmail
      * @param string $newPassword
-     * @param int    $flag
      */
-    public function updateEmailPassword(User $user, string $newEmail, string $newPassword, int $flag): void
+    public function updateEmailPassword(User $user, string $newEmail, string $newPassword): void
     {
-        if (0 === $flag || 2 === $flag) {
-            $user->setEmail($newEmail);
-        }
-        if (0 === $flag || 1 === $flag) {
-            $hashedPassword = $this->passwordHasher->hashPassword($user, $newPassword);
-            $user->setPassword($hashedPassword);
-        }
+        $user->setEmail($newEmail);
+        $hashedPassword = $this->passwordHasher->hashPassword($user, $newPassword);
+        $user->setPassword($hashedPassword);
+
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
