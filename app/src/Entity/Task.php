@@ -223,9 +223,9 @@ class Task
     }
 
     /**
-     * Getter for author
+     * Getter for author.
      *
-     * @return User|null
+     * @return ?User a user
      */
     public function getAuthor(): ?User
     {
@@ -233,9 +233,9 @@ class Task
     }
 
     /**
-     * Setter for author
+     * Setter for author.
      *
-     * @param User|null $author
+     * @param User|null $author some author
      *
      * @return $this
      */
@@ -247,9 +247,9 @@ class Task
     }
 
     /**
-     * Get for isAccepted
+     * Get for isAccepted.
      *
-     * @return bool|null
+     * @return bool a boolean value
      */
     public function getIsAccepted(): ?bool
     {
@@ -257,9 +257,9 @@ class Task
     }
 
     /**
-     * Setter for isAccepted
+     * Setter for isAccepted.
      *
-     * @param bool $isAccepted
+     * @param bool $isAccepted is the task accepted by author
      *
      * @return $this
      */

@@ -240,10 +240,12 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @param Task                   $task
-     * @param EntityManagerInterface $entityManager
+     * A toggle action.
      *
-     * @return RedirectResponse
+     * @param Task                   $task          task entity
+     * @param EntityManagerInterface $entityManager entity manager
+     *
+     * @return RedirectResponse to redirect response
      */
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/accept', name: 'task_accept', methods: 'GET')]

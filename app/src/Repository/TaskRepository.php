@@ -49,11 +49,12 @@ class TaskRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->createQueryBuilder('t')
-            ->select('partial t.{id, createdAt, updatedAt, title, category, isAccepted, author}')
-            ->where('t.isAccepted = :accepted')
+        return $this->getOrCreateQueryBuilder()
+            ->select('task', 'c')
+            ->join('task.category', 'c')
+            ->where('task.isAccepted = :accepted')
             ->setParameter('accepted', false)
-            ->orderBy('t.updatedAt', 'DESC');
+            ->orderBy('task.updatedAt', 'DESC');
     }
 
     /**
@@ -65,11 +66,12 @@ class TaskRepository extends ServiceEntityRepository
      */
     public function queryPart(Category $category): QueryBuilder
     {
-        return $this->createQueryBuilder('t')
-            ->select('partial t.{id, createdAt, updatedAt, title, category}')
-            ->where('t.category = :category')
+        return $this->getOrCreateQueryBuilder()
+            ->select('task', 'category')
+            ->join('task.category', 'category')
+            ->where('task.category = :category')
             ->setParameter('category', $category)
-            ->orderBy('t.updatedAt', 'DESC');
+            ->orderBy('task.updatedAt', 'DESC');
     }
 
     /**
@@ -81,12 +83,12 @@ class TaskRepository extends ServiceEntityRepository
      */
     public function queryPartTags(Tag $tag): QueryBuilder
     {
-        return $this->createQueryBuilder('t')
-            ->select('partial t.{id, createdAt, updatedAt, title}')
-            ->innerJoin('t.tags', 'tgs')
-            ->where('tgs = :tag')
+        return $this->getOrCreateQueryBuilder()
+            ->select('task', 'tags')
+            ->innerJoin('task.tags', 'tags')
+            ->where('tags = :tag')
             ->setParameter('tag', $tag)
-            ->orderBy('t.updatedAt', 'DESC');
+            ->orderBy('task.updatedAt', 'DESC');
     }
 
     /**
@@ -96,11 +98,12 @@ class TaskRepository extends ServiceEntityRepository
      */
     public function queryAcc(): QueryBuilder
     {
-        return $this->createQueryBuilder('t')
-            ->select('partial t.{id, createdAt, updatedAt, title, category, isAccepted, author}')
-            ->where('t.isAccepted = :accepted')
+        return $this->getOrCreateQueryBuilder()
+            ->select('task', 'c')
+            ->join('task.category', 'c')
+            ->where('task.isAccepted = :accepted')
             ->setParameter('accepted', true)
-            ->orderBy('t.updatedAt', 'DESC');
+            ->orderBy('task.updatedAt', 'DESC');
     }
 
     /**
